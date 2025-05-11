@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AOT"
         mc:Ignorable="d"
-        Title="AOT" Height="620" Width="650">
+        Title="AOT" Height="620" Width="640">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="160"/>
