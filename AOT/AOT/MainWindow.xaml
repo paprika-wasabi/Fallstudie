@@ -1,0 +1,80 @@
+﻿<Window x:Class="AOT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AOT"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="620" Width="650">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <TextBlock Margin="40,0,0,0">User:</TextBlock>
+                <TextBlock Margin="20,0,0,0"></TextBlock>
+                <TextBlock Margin="10,0,0,0">Role:</TextBlock>
+                <TextBlock Margin="20,0,0,0"></TextBlock>
+                <Button Margin="400,0,0,0" Width="80">Neu Projekt</Button>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="250" Height="20">
+                <TextBlock>Budget:</TextBlock>
+                <TextBlock Margin="5,0,0,0">Min</TextBlock>
+                <TextBox Margin="10,0,0,0" Width="60" BorderBrush="Black" BorderThickness="1"></TextBox>
+                <TextBlock Margin="10,0,0,0">Max</TextBlock>
+                <TextBox Margin="10,0,0,0" Width="60" BorderBrush="Black" BorderThickness="1"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="250" Height="20">
+                <TextBlock>Name:</TextBlock>
+                <TextBox Margin="10,0,0,0" Width="200" BorderBrush="Black" BorderThickness="1"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="540" Height="20">
+                <TextBlock>Projektleiter:</TextBlock>
+                <ComboBox Margin="10,0,0,0" Width="100" Height="18">
+                    <ComboBoxItem Content="Option 1" />
+                    <ComboBoxItem Content="Option 2" />
+                    <ComboBoxItem Content="Option 3" />
+                </ComboBox>
+                <TextBlock Margin="15,0,0,0">Abteilung:</TextBlock>
+                <ComboBox Margin="10,0,0,0" Width="100" Height="18">
+                    <ComboBoxItem Content="Option 1" />
+                    <ComboBoxItem Content="Option 2" />
+                    <ComboBoxItem Content="Option 3" />
+                </ComboBox>
+                <TextBlock Margin="15,0,0,0">Projektart:</TextBlock>
+                <ComboBox Margin="10,0,0,0" Width="100" Height="18">
+                    <ComboBoxItem Content="Option 1" />
+                    <ComboBoxItem Content="Option 2" />
+                    <ComboBoxItem Content="Option 3" />
+                </ComboBox>
+            </StackPanel>
+            <Button Margin="10,10,0,0" Width="60">Suchen</Button>
+        </StackPanel>
+        <ListView Name="CollectionView" Width="600" Height="400" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="60" Header="Budget">
+
+                    </GridViewColumn>
+                    <GridViewColumn Width="140" Header="Name">
+                        
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" Header="Projektleiter">
+
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" Header="Abteilung">
+
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" Header="Projektart">
+
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" Header="KPI Score">
+
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
