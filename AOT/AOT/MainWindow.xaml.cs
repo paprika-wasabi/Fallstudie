@@ -20,5 +20,12 @@ namespace AOT
         {
             InitializeComponent();
         }
+
+        private void OpenForm_Click(object sender, RoutedEventArgs e)
+        {
+            FillFormWindow formWindow = new();
+            formWindow.Owner = this; // optional: set owner to block main window
+            formWindow.ShowDialog(); // or use Show() if you want it non-modal
+        }
     }
 }
