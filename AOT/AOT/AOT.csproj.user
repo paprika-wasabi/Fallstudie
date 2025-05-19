@@ -10,9 +10,21 @@
     <Compile Update="FillFormWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="FillFormWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CompletedPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="FailedPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

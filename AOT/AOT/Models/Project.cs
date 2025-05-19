@@ -25,5 +25,11 @@ namespace AOT.Models
 
         [BsonElement("member")]
         public string Member { get; set; }
+
+        [BsonElement("kpi-score")]
+        public float KPI { get; set; }
+
+        [BsonElement("date")]
+        public string Date { get; set; }
     }
 }

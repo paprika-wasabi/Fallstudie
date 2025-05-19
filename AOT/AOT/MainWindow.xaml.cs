@@ -19,13 +19,22 @@ namespace AOT
         public MainWindow()
         {
             InitializeComponent();
+            MainContent.Content = new HomePage();
         }
 
-        private void OpenForm_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            FillFormWindow formWindow = new();
-            formWindow.Owner = this; // optional: set owner to block main window
-            formWindow.ShowDialog(); // or use Show() if you want it non-modal
+            MainContent.Content = new HomePage();
+        }
+
+        private void CompletedButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new CompletedPage();
+        }
+
+        private void FailedButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new FailedPage();
         }
     }
 }
