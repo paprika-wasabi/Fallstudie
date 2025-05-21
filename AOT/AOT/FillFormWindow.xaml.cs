@@ -1,9 +1,11 @@
 ﻿using AOT.Models;
 using AOT.View;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace AOT
 {
@@ -24,11 +26,46 @@ namespace AOT
             InitializeComponent();
         }
 
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextDecimal(((TextBox)sender).Text, e.Text);
+        }
+
+        private bool IsTextDecimal(string currentText, string newText)
+        {
+            string fullText = currentText + newText;
+
+            // Try parse decimal, allow also empty string (for deleting)
+            return decimal.TryParse(fullText, out _) || string.IsNullOrEmpty(fullText);
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (!decimal.TryParse(textBox.Text, out _))
+            {
+                MessageBox.Show("Please enter a valid decimal number.");
+                textBox.Focus();
+            }
+        }
+
         private void SubmitForm_Click(object sender, RoutedEventArgs e)
         {
+            var pflicht = "";
+            if (IsPflicht.IsChecked == true)
+            {
+                pflicht = "Ja";
+            }
+            decimal b;
+
+            if (decimal.TryParse(BudgetBox.Text, out decimal budget))
+            {
+                b = budget;
+            }
+
             Project project = new Project()
             {
-                Budget = BudgetBox.Text,
+                Budget = budget,
                 Name = NameBox.Text,
                 Leader = LeaderBox.Text,
                 Department = DepartmentBox.Text,
@@ -36,6 +73,7 @@ namespace AOT
                 Member = MemberBox.Text,
                 KPI = CalulateKPIScore(),
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
+                Pflicht = pflicht
             };
 
 

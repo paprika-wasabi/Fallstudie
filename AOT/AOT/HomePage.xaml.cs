@@ -19,6 +19,12 @@ namespace AOT
             InitializeComponent();
         }
 
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            bool isChecked = IsPflicht.IsChecked == true;
+            WeakReferenceMessenger.Default.Send(new Message(Message.MessageType.Search, BudgetMin.Text, BudgetMax.Text, ProjectName.Text, isChecked) );
+        }
+
         private void OpenForm_Click(object sender, RoutedEventArgs e)
         {
             FillFormWindow formWindow = new();

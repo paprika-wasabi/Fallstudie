@@ -9,7 +9,7 @@ namespace AOT.Models
         public ObjectId Id { get; set; }
 
         [BsonElement("budget")]
-        public string Budget { get; set; }
+        public decimal Budget { get; set; }
 
         [BsonElement("name")]
         public string Name { get; set; }
@@ -31,5 +31,8 @@ namespace AOT.Models
 
         [BsonElement("date")]
         public string Date { get; set; }
+
+        [BsonElement("pflicht")]
+        public string Pflicht { get; set; }
     }
 }

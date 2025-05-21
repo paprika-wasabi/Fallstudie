@@ -3,6 +3,7 @@ using AOT.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace AOT
 {
@@ -21,6 +22,9 @@ namespace AOT
                     case Message.MessageType.RefreshUI:
                         Refresh();
                         break;
+                    case Message.MessageType.Search:
+                        Search(m.MinBudget, m.MaxBudget, m.Name, m.IsPflicht);
+                        break;
                 }
             });
             
@@ -36,6 +40,19 @@ namespace AOT
             await Task.Delay(200);
             DatabaseService databaseService = new DatabaseService();
             List<Project> projects = databaseService.GetAllProjects();
+            ProjectsCollection = new ObservableCollection<Project>(projects);
+        }
+
+        public async void Search(string minBudget, string maxBudget, string name, bool isPflicht)
+        {
+            if (ProjectsCollection != null)
+            {
+                ProjectsCollection.Clear();
+
+            }
+            await Task.Delay(200);
+            DatabaseService databaseService = new DatabaseService();
+            List<Project> projects = databaseService.Search(minBudget, maxBudget, name, isPflicht);
             ProjectsCollection = new ObservableCollection<Project>(projects);
         }
 

@@ -1,6 +1,7 @@
 ﻿using AOT.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Windows.Documents;
 
 namespace AOT
 {
@@ -17,6 +18,43 @@ namespace AOT
             _projects = database.GetCollection<Project>("Projects");
             _finishedProjects = database.GetCollection<Project>("Finished_Projects");
             _failedProjects = database.GetCollection<Project>("Failed_Projects");
+        }
+
+        public List<Project> Search(string budgetMin, string budgetMax, string name, bool isPflicht)
+        {
+            decimal budgetMinValue;
+            decimal budgetMaxValue;
+
+            if (string.IsNullOrWhiteSpace(budgetMin))
+            {
+                budgetMinValue = decimal.MinValue;
+            }
+            else
+            {
+                budgetMinValue = decimal.Parse(budgetMin);
+            }
+
+            if (string.IsNullOrWhiteSpace(budgetMax))
+            {
+                budgetMaxValue = decimal.MaxValue;
+            }
+            else
+            {
+                budgetMaxValue = decimal.Parse(budgetMax);
+            }
+
+            var pflicht = "";
+            if (isPflicht)
+            {
+                pflicht = "Ja";
+            }
+
+            var filter = Builders<Project>.Filter.Gt(p => p.Budget, budgetMinValue) &
+                         Builders<Project>.Filter.Lt(p => p.Budget, budgetMaxValue) &
+                         Builders<Project>.Filter.Regex("name", new BsonRegularExpression(name, "i")) &
+                         Builders<Project>.Filter.Eq(x => x.Pflicht, pflicht);
+
+            return _projects.Find(filter).ToList();
         }
         public async void MoveToDone(Project project)
         {
@@ -42,17 +80,17 @@ namespace AOT
 
         public List<Project> GetAllProjects()
         {
-            return _projects.Find(FilterDefinition<Project>.Empty).ToList();
+            return _projects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
         public List<Project> GetAllCompletedProjects()
         {
-            return _finishedProjects.Find(FilterDefinition<Project>.Empty).ToList();
+            return _finishedProjects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
         public List<Project> GetAllFailedProjects()
         {
-            return _failedProjects.Find(FilterDefinition<Project>.Empty).ToList();
+            return _failedProjects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
         public bool AddNewProject(Project newProject)
