@@ -3,6 +3,7 @@ using AOT.View;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace AOT
 {
@@ -67,6 +68,19 @@ namespace AOT
                 db.MoveToFail(item);
             }
             WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextDecimal(((TextBox)sender).Text, e.Text);
+        }
+
+        private bool IsTextDecimal(string currentText, string newText)
+        {
+            string fullText = currentText + newText;
+
+            // Try parse decimal, allow also empty string (for deleting)
+            return decimal.TryParse(fullText, out _) || string.IsNullOrEmpty(fullText);
         }
     }
 }
