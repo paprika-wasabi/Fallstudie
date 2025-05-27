@@ -22,6 +22,8 @@ erstell fogende Datenbankstruktur.
 
 ![image](https://github.com/user-attachments/assets/0fb92d0b-5bdf-4eb4-84f1-056822f149ee)
 
+Data für Projektleiter, Abteilungen, Projektart findest du unter Fallstudie/DataSet
+
 Clone this Github repo
 
 Open .sln file.
