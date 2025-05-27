@@ -36,5 +36,10 @@ namespace AOT
         {
             MainContent.Content = new FailedPage();
         }
+
+        private void DashboardButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new Dashboard();
+        }
     }
 }

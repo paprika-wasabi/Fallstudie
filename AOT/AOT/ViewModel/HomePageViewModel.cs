@@ -39,7 +39,7 @@ namespace AOT
             }
             await Task.Delay(200);
             DatabaseService databaseService = new DatabaseService();
-            List<Project> projects = databaseService.GetAllProjects();
+            List<Project> projects = databaseService.GetAllActiveProjects();
             ProjectsCollection = new ObservableCollection<Project>(projects);
         }
 

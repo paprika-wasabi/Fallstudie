@@ -139,9 +139,14 @@ namespace AOT
             await _projects.DeleteOneAsync(a => a.Id == project.Id);
         }
 
-        public List<Project> GetAllProjects()
+        public List<Project> GetAllActiveProjects()
         {
             return _projects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
+        }
+
+        public int CountActiveProjects()
+        {
+            return (int)_projects.CountDocuments(FilterDefinition<Project>.Empty);
         }
 
         public List<Project> GetAllCompletedProjects()
@@ -149,11 +154,20 @@ namespace AOT
             return _finishedProjects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
+        public int CountCompletedProjects()
+        {
+            return (int)_finishedProjects.CountDocuments(FilterDefinition<Project>.Empty);
+        }
+
         public List<Project> GetAllFailedProjects()
         {
             return _failedProjects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
+        public int CountFailedProjects()
+        {
+            return (int)_failedProjects.CountDocuments(FilterDefinition<Project>.Empty);
+        }
         public bool AddNewProject(Project newProject)
         {
             try
