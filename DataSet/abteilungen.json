@@ -1,0 +1,82 @@
+[
+  {
+    "abteilungs_id":1,
+    "abteilung":"Forschung & Entwicklung"
+  },
+  {
+    "abteilungs_id":2,
+    "abteilung":"IT"
+  },
+  {
+    "abteilungs_id":3,
+    "abteilung":"Vertrieb"
+  },
+  {
+    "abteilungs_id":4,
+    "abteilung":"Marketing"
+  },
+  {
+    "abteilungs_id":5,
+    "abteilung":"Personalwesen (HR)"
+  },
+  {
+    "abteilungs_id":6,
+    "abteilung":"Finanzen & Controlling"
+  },
+  {
+    "abteilungs_id":7,
+    "abteilung":"Recht"
+  },
+  {
+    "abteilungs_id":8,
+    "abteilung":"Produktion"
+  },
+  {
+    "abteilungs_id":9,
+    "abteilung":"Logistik"
+  },
+  {
+    "abteilungs_id":10,
+    "abteilung":"Einkauf"
+  },
+  {
+    "abteilungs_id":11,
+    "abteilung":"Kundenservice"
+  },
+  {
+    "abteilungs_id":12,
+    "abteilung":"Qualitätsmanagement"
+  },
+  {
+    "abteilungs_id":13,
+    "abteilung":"Business Development"
+  },
+  {
+    "abteilungs_id":14,
+    "abteilung":"Projektmanagement"
+  },
+  {
+    "abteilungs_id":15,
+    "abteilung":"Consulting"
+  },
+  {
+    "abteilungs_id":16,
+    "abteilung":"Compliance"
+  },
+  {
+    "abteilungs_id":17,
+    "abteilung":"Facility Management"
+  },
+  {
+    "abteilungs_id":18,
+    "abteilung":"Öffentlichkeitsarbeit (PR)"
+  },
+  {
+    "abteilungs_id":19,
+    "abteilung":"Produktmanagement"
+  },
+  {
+    "abteilungs_id":20,
+    "abteilung":"Datenschutz & IT-Sicherheit"
+  }
+]

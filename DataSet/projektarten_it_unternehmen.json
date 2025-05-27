@@ -1,0 +1,152 @@
+[
+  {
+    "projektart":"Webentwicklung",
+    "kategorie":"Softwareentwicklung",
+    "beschreibung":"Entwicklung und Wartung von Websites und Webanwendungen"
+  },
+  {
+    "projektart":"Mobile App-Entwicklung",
+    "kategorie":"Softwareentwicklung",
+    "beschreibung":"Entwicklung nativer oder hybrider Apps für iOS\/Android"
+  },
+  {
+    "projektart":"Desktop-Software",
+    "kategorie":"Softwareentwicklung",
+    "beschreibung":"Entwicklung von lokal installierbaren Anwendungen"
+  },
+  {
+    "projektart":"API-Entwicklung",
+    "kategorie":"Softwareentwicklung",
+    "beschreibung":"Design und Implementierung von Programmierschnittstellen"
+  },
+  {
+    "projektart":"Legacy-System-Modernisierung",
+    "kategorie":"Softwareentwicklung",
+    "beschreibung":"Ablösung oder Modernisierung veralteter IT-Systeme"
+  },
+  {
+    "projektart":"Cloud-Migration",
+    "kategorie":"Infrastruktur",
+    "beschreibung":"Überführung von IT-Systemen in Cloud-Umgebungen"
+  },
+  {
+    "projektart":"Netzwerkaufbau",
+    "kategorie":"Infrastruktur",
+    "beschreibung":"Planung und Implementierung von Netzwerkarchitekturen"
+  },
+  {
+    "projektart":"Servermigration",
+    "kategorie":"Infrastruktur",
+    "beschreibung":"Umzug von Servern auf neue Hardware oder Standorte"
+  },
+  {
+    "projektart":"IT-Sicherheitsprojekt",
+    "kategorie":"Infrastruktur",
+    "beschreibung":"Einführung oder Verbesserung von IT-Sicherheitsmaßnahmen"
+  },
+  {
+    "projektart":"Virtualisierung",
+    "kategorie":"Infrastruktur",
+    "beschreibung":"Einrichtung virtueller Maschinen und Ressourcenpools"
+  },
+  {
+    "projektart":"Business Intelligence",
+    "kategorie":"Daten & Analyse",
+    "beschreibung":"Aufbau von Reporting- und Analyseplattformen"
+  },
+  {
+    "projektart":"Data Warehouse",
+    "kategorie":"Daten & Analyse",
+    "beschreibung":"Zentralisierung von Unternehmensdaten"
+  },
+  {
+    "projektart":"Data Governance",
+    "kategorie":"Daten & Analyse",
+    "beschreibung":"Regelwerke und Prozesse zur Datenqualität und -sicherheit"
+  },
+  {
+    "projektart":"Machine Learning",
+    "kategorie":"Daten & Analyse",
+    "beschreibung":"Projekte zur Nutzung künstlicher Intelligenz"
+  },
+  {
+    "projektart":"Big Data Plattform",
+    "kategorie":"Daten & Analyse",
+    "beschreibung":"Verarbeitung großer Datenmengen mit spezialisierten Tools"
+  },
+  {
+    "projektart":"ERP-Einführung",
+    "kategorie":"Business-Systeme",
+    "beschreibung":"Einführung eines Enterprise Resource Planning Systems"
+  },
+  {
+    "projektart":"CRM-Implementierung",
+    "kategorie":"Business-Systeme",
+    "beschreibung":"Einführung eines Customer Relationship Management Systems"
+  },
+  {
+    "projektart":"Dokumentenmanagement",
+    "kategorie":"Business-Systeme",
+    "beschreibung":"Aufbau eines digitalen Ablagesystems"
+  },
+  {
+    "projektart":"E-Commerce-Plattform",
+    "kategorie":"Business-Systeme",
+    "beschreibung":"Einrichtung oder Weiterentwicklung eines Online-Shops"
+  },
+  {
+    "projektart":"RPA-Projekt",
+    "kategorie":"Digitalisierung",
+    "beschreibung":"Robotic Process Automation zur Automatisierung von Aufgaben"
+  },
+  {
+    "projektart":"Workflow-Digitalisierung",
+    "kategorie":"Digitalisierung",
+    "beschreibung":"Automatisierung von Genehmigungs- und Geschäftsprozessen"
+  },
+  {
+    "projektart":"ServiceNow-Einführung",
+    "kategorie":"Digitalisierung",
+    "beschreibung":"Implementierung einer ITSM-Plattform"
+  },
+  {
+    "projektart":"Prozessoptimierung",
+    "kategorie":"Digitalisierung",
+    "beschreibung":"Effizienzsteigerung bestehender Prozesse durch IT"
+  },
+  {
+    "projektart":"ISO 27001-Zertifizierung",
+    "kategorie":"Compliance",
+    "beschreibung":"Sicherheitszertifizierung nach internationalem Standard"
+  },
+  {
+    "projektart":"DSGVO-Umsetzung",
+    "kategorie":"Compliance",
+    "beschreibung":"Einführung datenschutzkonformer Prozesse"
+  },
+  {
+    "projektart":"Interne Revision",
+    "kategorie":"Compliance",
+    "beschreibung":"Vorbereitung auf Audits und Überprüfungen"
+  },
+  {
+    "projektart":"IT-Strategieentwicklung",
+    "kategorie":"Management",
+    "beschreibung":"Langfristige Planung der IT-Ausrichtung"
+  },
+  {
+    "projektart":"PMO-Aufbau",
+    "kategorie":"Management",
+    "beschreibung":"Einrichtung eines Project Management Office"
+  },
+  {
+    "projektart":"Change Management",
+    "kategorie":"Management",
+    "beschreibung":"Begleitung organisatorischer Veränderungen"
+  },
+  {
+    "projektart":"IT-Kostenoptimierung",
+    "kategorie":"Management",
+    "beschreibung":"Reduktion von IT-Ausgaben durch Effizienzmaßnahmen"
+  }
+]
