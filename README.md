@@ -16,8 +16,11 @@ erstell fogende Datenbankstruktur.
 |-Failed_Projects
 |-Finished_Projects
 |-Projects
+|-Projektart
+|-Projektleiter
+|-Abteilungen
 
-![image](https://github.com/user-attachments/assets/1f4b9850-c4ed-49f1-8910-9926b8907e38)
+![image](https://github.com/user-attachments/assets/0fb92d0b-5bdf-4eb4-84f1-056822f149ee)
 
 Clone this Github repo
 
