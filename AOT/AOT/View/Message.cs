@@ -13,6 +13,9 @@ namespace AOT.View
         public string MaxBudget;
         public string Name;
         public bool IsPflicht;
+        public string Leader;
+        public string Department;
+        public string ProjectType;
         public enum MessageType
         {
             Search,
@@ -24,13 +27,16 @@ namespace AOT.View
 
         }
 
-        public Message(MessageType type, string minBudget, string maxBudget, string name, bool isPflicht)
+        public Message(MessageType type, string minBudget, string maxBudget, string name, bool isPflicht, string leader, string department, string projectType)
         {
             MinBudget = minBudget;
             MaxBudget = maxBudget;
             Type = type;
             Name = name;
             IsPflicht = isPflicht;
+            Leader = leader;
+            Department = department;
+            ProjectType = projectType;
         }
     }
 }

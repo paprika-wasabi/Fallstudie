@@ -3,6 +3,7 @@ using AOT.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Configuration;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,6 +25,7 @@ namespace AOT
         public FillFormWindow()
         {
             InitializeComponent();
+            this.Loaded += Window_Loaded;
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -67,9 +69,9 @@ namespace AOT
             {
                 Budget = budget,
                 Name = NameBox.Text,
-                Leader = LeaderBox.Text,
-                Department = DepartmentBox.Text,
-                Type = TypeBox.Text,
+                Leader = ProjectLeaderComboBox.Text,
+                Department = DepartmentName.Text,
+                Type = ProjectTypeComboBox.Text,
                 Member = MemberBox.Text,
                 KPI = CalulateKPIScore(),
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
@@ -92,6 +94,25 @@ namespace AOT
             }
 
             WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
+        }
+
+        private async void LeaderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProjectLeaderComboBox.SelectedItem is Leader selectedLeader)
+            {
+                DatabaseService service = new DatabaseService();
+                int id = selectedLeader.DepartmentId;
+                DepartmentName.Text = (await service.GetDepartmentByIdAsync(id)).Name;
+            }
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var service = new DatabaseService();
+            var options1 = await service.GetLeadersAsync();
+            var options2 = await service.GetProjectTypesAsync();
+            ProjectLeaderComboBox.ItemsSource = options1;
+            ProjectTypeComboBox.ItemsSource = options2;
         }
 
         private float CalulateKPIScore()
