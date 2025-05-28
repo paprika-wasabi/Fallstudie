@@ -36,6 +36,11 @@
                 <TextBlock Text="Projektart:"/>
                 <ComboBox x:Name="ProjectTypeComboBox" Margin="23,0,0,0" Width="180" Height="22"></ComboBox>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <TextBlock Text="Portfolio:"/>
+                <ComboBox x:Name="PortfolioComboBox" Margin="30,0,0,0" Width="180" Height="22"></ComboBox>
+
+            </StackPanel>
 
             <TextBlock Margin="0,20,0,0" Text="Mitglied"></TextBlock>
             <TextBox x:Name="MemberBox" Margin="0,5,0,15"/>

@@ -14,6 +14,7 @@ namespace AOT
         private readonly IMongoCollection<Leader> _projectleaders;
         private readonly IMongoCollection<Department> _departments;
         private readonly IMongoCollection<ProjectType> _projectsType;
+        private readonly IMongoCollection<Portfolio> _portfolios;
 
         public DatabaseService()
         {
@@ -25,6 +26,7 @@ namespace AOT
             _projectleaders = database.GetCollection<Leader>("Projektleiter");
             _departments = database.GetCollection<Department>("Abteilungen");
             _projectsType = database.GetCollection<ProjectType>("Projektart");
+            _portfolios = database.GetCollection<Portfolio>("Portfolio");
         }
 
         public List<Project> Search(IMongoCollection<Project> collection, string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type)
@@ -97,6 +99,11 @@ namespace AOT
             return await _projectsType.Find(_ => true).ToListAsync();
         }
 
+        public async Task<List<Portfolio>> GetPortfoliosAsync()
+        {
+            return await _portfolios.Find(_ => true).ToListAsync();
+        }
+
         public async Task<List<Leader>> GetLeadersAsync()
         {
             return await _projectleaders.Find(FilterDefinition<Leader>.Empty).ToListAsync();
@@ -139,6 +146,8 @@ namespace AOT
             await _projects.DeleteOneAsync(a => a.Id == project.Id);
         }
 
+
+
         public List<Project> GetAllActiveProjects()
         {
             return _projects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
@@ -168,6 +177,12 @@ namespace AOT
         {
             return (int)_failedProjects.CountDocuments(FilterDefinition<Project>.Empty);
         }
+
+        public int CountActiveProjectsByPortfolio(string portfolioName)
+        {
+            return (int)_projects.CountDocuments(p => p.PortfolioName == portfolioName);
+        }
+
         public bool AddNewProject(Project newProject)
         {
             try

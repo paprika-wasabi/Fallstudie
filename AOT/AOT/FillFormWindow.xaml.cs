@@ -72,6 +72,7 @@ namespace AOT
                 Leader = ProjectLeaderComboBox.Text,
                 Department = DepartmentName.Text,
                 Type = ProjectTypeComboBox.Text,
+                PortfolioName = PortfolioComboBox.Text,
                 Member = MemberBox.Text,
                 KPI = CalulateKPIScore(),
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
@@ -111,8 +112,10 @@ namespace AOT
             var service = new DatabaseService();
             var options1 = await service.GetLeadersAsync();
             var options2 = await service.GetProjectTypesAsync();
+            var options3 = await service.GetPortfoliosAsync();
             ProjectLeaderComboBox.ItemsSource = options1;
             ProjectTypeComboBox.ItemsSource = options2;
+            PortfolioComboBox.ItemsSource = options3;
         }
 
         private float CalulateKPIScore()

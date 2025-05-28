@@ -20,6 +20,9 @@ namespace AOT.Models
         [BsonElement("department")]
         public string Department { get; set; }
 
+        [BsonElement("portfolioName")]
+        public string PortfolioName { get; set; }
+
         [BsonElement("projecttype")]
         public string Type { get; set; }
 
