@@ -10,9 +10,9 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                 <TextBlock Margin="40,0,0,0">User:</TextBlock>
-                <TextBlock Margin="20,0,0,0"></TextBlock>
+                <TextBlock x:Name="UserBlock" Margin="10,0,0,0"></TextBlock>
                 <TextBlock Margin="10,0,0,0">Role:</TextBlock>
-                <TextBlock Margin="20,0,0,0"></TextBlock>
+                <TextBlock x:Name="RoleBlock" Margin="10,0,0,0"></TextBlock>
                 <Button Margin="400,0,0,0" Width="80" Click="OpenForm_Click">Neu Projekt</Button>
             </StackPanel>
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="250" Height="20">

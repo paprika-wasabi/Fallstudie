@@ -54,9 +54,14 @@ namespace AOT
         private void SubmitForm_Click(object sender, RoutedEventArgs e)
         {
             var pflicht = "";
+            var status = "Aktiv";
+
             if (IsPflicht.IsChecked == true)
             {
                 pflicht = "Ja";
+                status = "Ausstehend";
+
+
             }
             decimal b;
 
@@ -76,7 +81,8 @@ namespace AOT
                 Member = MemberBox.Text,
                 KPI = CalulateKPIScore(),
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
-                Pflicht = pflicht
+                Pflicht = pflicht,
+                Status = status,
             };
 
 

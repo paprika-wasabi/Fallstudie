@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AOT.CompletedPage"
+﻿<UserControl x:Class="AOT.PendingPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,40 +10,23 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                 <TextBlock Margin="40,0,0,0">User:</TextBlock>
-                <TextBlock Margin="20,0,0,0"></TextBlock>
+                <TextBlock x:Name="UserBlock" Margin="10,0,0,0"></TextBlock>
                 <TextBlock Margin="10,0,0,0">Role:</TextBlock>
-                <TextBlock Margin="20,0,0,0"></TextBlock>
+                <TextBlock x:Name="RoleBlock" Margin="10,0,0,0"></TextBlock>
             </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="250" Height="20">
-                <TextBlock>Budget:</TextBlock>
-                <TextBlock Margin="5,0,0,0">Min</TextBlock>
-                <TextBox x:Name="BudgetMin" Margin="10,0,0,0" Width="60" BorderBrush="Black" BorderThickness="1" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
-                <TextBlock Margin="10,0,0,0">Max</TextBlock>
-                <TextBox x:Name="BudgetMax" Margin="10,0,0,0" Width="60" BorderBrush="Black" BorderThickness="1" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
-            </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="350" Height="20">
-                <TextBlock>Name:</TextBlock>
-                <TextBox x:Name="ProjectName" Margin="10,0,0,0" Width="200" BorderBrush="Black" BorderThickness="1"></TextBox>
-                <CheckBox x:Name="IsPflicht" Content="Pflichtprojekt" Margin="10,3,0,0"/>
-            </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="540" Height="27">
-                <TextBlock Margin="0,5,0,0" >Projektleiter:</TextBlock>
-                <ComboBox x:Name="ProjectLeaderComboBox" Margin="10,0,0,0" Width="100" Height="22" SelectionChanged="LeaderComboBox_SelectionChanged">
-                </ComboBox>
-                <TextBlock Margin="15,5,0,0">Abteilung:</TextBlock>
-                <ComboBox x:Name="DepartmentComboBox" Margin="10,0,0,0" Width="100" Height="22">
-                </ComboBox>
-                <TextBlock Margin="15,5,0,0">Projektart:</TextBlock>
-                <ComboBox x:Name="ProjectTypeComboBox" Margin="10,0,0,0" Width="100" Height="22">
-                </ComboBox>
-            </StackPanel>
-            <Button Margin="10,10,0,0" Width="60" Click="Search_Click">Suchen</Button>
-            <ListView Margin="0,10,0,0" Name="CollectionView" Width="780" Height="400" ItemsSource="{Binding CompletedProjectsCollection}">
+            <ListView Margin="0,40,0,0" Name="CollectionView" Width="780" Height="400" ItemsSource="{Binding PendingProjectsCollection}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
                 </ListView.ItemContainerStyle>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Datail Anzeigen" Click="View_Click"/>
+                        <MenuItem Header="Genehmigen" Click="ApproveClick"/>
+                        <MenuItem Header="Ablehnen" Click="DeleteFromPending"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="100" Header="Name">

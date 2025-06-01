@@ -53,6 +53,9 @@ namespace AOT
             ProjectLeaderComboBox.ItemsSource = options1;
             ProjectTypeComboBox.ItemsSource = options2;
             DepartmentComboBox.ItemsSource = options3;
+
+            UserBlock.Text = AuthState.UserName;
+            RoleBlock.Text = AuthState.Role;
         }
 
         private void OpenForm_Click(object sender, RoutedEventArgs e)
@@ -83,7 +86,7 @@ namespace AOT
             if (item != null)
             {
                 DatabaseService db = new();
-                db.MoveToDone(item);
+                //db.MoveToDone(item);
             }
             WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
         }
@@ -94,7 +97,7 @@ namespace AOT
             if (item != null)
             {
                 DatabaseService db = new();
-                db.MoveToFail(item);
+                //db.MoveToFail(item);
             }
             WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
         }

@@ -15,9 +15,8 @@
         <!-- Sidebar -->
         <StackPanel Background="#333" VerticalAlignment="Stretch">
             <Button Content="Dashboard" Click="DashboardButton_Click" Margin="10"/>
-            <Button Content="Aktive Projekte" Click="HomeButton_Click" Margin="10"/>
-            <Button Content="Abgeschlossene" Click="CompletedButton_Click" Margin="10"/>
-            <Button Content="Gescheiterte" Click="FailedButton_Click" Margin="10"/>
+            <Button Content="Projekte" Click="HomeButton_Click" Margin="10"/>
+            <Button Content="Ausstehende" Click="PendingButton_Click" Margin="10"/>
             <!-- Add more buttons here -->
         </StackPanel>
         <ContentControl x:Name="MainContent" Grid.Column="1" />

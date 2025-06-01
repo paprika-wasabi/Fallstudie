@@ -18,7 +18,7 @@ namespace AOT
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();  
             MainContent.Content = new HomePage();
         }
 
@@ -27,14 +27,9 @@ namespace AOT
             MainContent.Content = new HomePage();
         }
 
-        private void CompletedButton_Click(object sender, RoutedEventArgs e)
+        private void PendingButton_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new CompletedPage();
-        }
-
-        private void FailedButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainContent.Content = new FailedPage();
+            MainContent.Content = new PendingPage();
         }
 
         private void DashboardButton_Click(object sender, RoutedEventArgs e)

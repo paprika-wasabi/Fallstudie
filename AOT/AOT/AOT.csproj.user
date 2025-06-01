@@ -16,6 +16,9 @@
     <Compile Update="HomePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="LoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Dashboard.xaml">
@@ -24,13 +27,13 @@
     <Page Update="FillFormWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="CompletedPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="FailedPage.xaml">
+    <Page Update="PendingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

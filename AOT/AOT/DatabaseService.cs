@@ -9,24 +9,22 @@ namespace AOT
     public class DatabaseService
     {
         private readonly IMongoCollection<Project> _projects;
-        private readonly IMongoCollection<Project> _finishedProjects;
-        private readonly IMongoCollection<Project> _failedProjects;
         private readonly IMongoCollection<Leader> _projectleaders;
         private readonly IMongoCollection<Department> _departments;
         private readonly IMongoCollection<ProjectType> _projectsType;
         private readonly IMongoCollection<Portfolio> _portfolios;
+        private readonly IMongoCollection<User> _users;
 
         public DatabaseService()
         {
             var client = new MongoClient("mongodb://localhost:27017"); // or your Mongo URI
             var database = client.GetDatabase("AOT");
             _projects = database.GetCollection<Project>("Projects");
-            _finishedProjects = database.GetCollection<Project>("Finished_Projects");
-            _failedProjects = database.GetCollection<Project>("Failed_Projects");
             _projectleaders = database.GetCollection<Leader>("Projektleiter");
             _departments = database.GetCollection<Department>("Abteilungen");
             _projectsType = database.GetCollection<ProjectType>("Projektart");
             _portfolios = database.GetCollection<Portfolio>("Portfolio");
+            _users = database.GetCollection<User>("User");
         }
 
         public List<Project> Search(IMongoCollection<Project> collection, string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type)
@@ -84,16 +82,6 @@ namespace AOT
             return Search(_projects, budgetMin, budgetMax, name, isPflicht, leader, department, type);
         }
 
-        public List<Project> SearchFailedProject(string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type)
-        {
-            return Search(_failedProjects, budgetMin, budgetMax, name, isPflicht, leader, department, type);
-        }
-
-        public List<Project> SearchCompletedProject(string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type)
-        {
-            return Search(_finishedProjects, budgetMin, budgetMax, name, isPflicht, leader, department, type);
-        }
-
         public async Task<List<ProjectType>> GetProjectTypesAsync()
         {
             return await _projectsType.Find(_ => true).ToListAsync();
@@ -124,6 +112,24 @@ namespace AOT
             return await _projectleaders.Find(a => a.DepartmentId == departmentId).FirstOrDefaultAsync();
         }
 
+        public async void UpdateProjectStatus(Project project, string newStatus)
+        {
+            var filter = Builders<Project>.Filter.Eq(p => p.Id, project.Id);
+            var update = Builders<Project>.Update.Set(p => p.Status, newStatus);
+
+            var result = await _projects.UpdateOneAsync(filter, update);
+        }
+
+        public async void DeleteFromPending(Project project)
+        {
+            var document = await _projects.Find(a => a.Id == project.Id).FirstOrDefaultAsync();
+            if (document == null)
+            {
+                return;
+            }
+            await _projects.DeleteOneAsync(a => a.Id == project.Id);
+        }
+
         public async void MoveToDone(Project project)
         {
             var document = await _projects.Find(a => a.Id == project.Id).FirstOrDefaultAsync();
@@ -131,7 +137,6 @@ namespace AOT
             {
                 return;
             }
-            await _finishedProjects.InsertOneAsync(document);
             await _projects.DeleteOneAsync(a => a.Id == project.Id);
         }
 
@@ -142,7 +147,6 @@ namespace AOT
             {
                 return;
             }
-            await _failedProjects.InsertOneAsync(document);
             await _projects.DeleteOneAsync(a => a.Id == project.Id);
         }
 
@@ -150,7 +154,12 @@ namespace AOT
 
         public List<Project> GetAllActiveProjects()
         {
-            return _projects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
+            return _projects.Find(p => p.Status == "Aktiv").SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
+        }
+
+        public List<Project> GetAllPendingProjects()
+        {
+            return _projects.Find(p => p.Status == "Ausstehend").SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
         public int CountActiveProjects()
@@ -158,29 +167,15 @@ namespace AOT
             return (int)_projects.CountDocuments(FilterDefinition<Project>.Empty);
         }
 
-        public List<Project> GetAllCompletedProjects()
-        {
-            return _finishedProjects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
-        }
-
-        public int CountCompletedProjects()
-        {
-            return (int)_finishedProjects.CountDocuments(FilterDefinition<Project>.Empty);
-        }
-
-        public List<Project> GetAllFailedProjects()
-        {
-            return _failedProjects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
-        }
-
-        public int CountFailedProjects()
-        {
-            return (int)_failedProjects.CountDocuments(FilterDefinition<Project>.Empty);
-        }
-
         public int CountActiveProjectsByPortfolio(string portfolioName)
         {
             return (int)_projects.CountDocuments(p => p.PortfolioName == portfolioName);
+        }
+
+        public async Task<User> GetUserByUserName(string usernanme)
+
+        {
+            return await _users.Find(a => a.username == usernanme).FirstOrDefaultAsync();
         }
 
         public bool AddNewProject(Project newProject)

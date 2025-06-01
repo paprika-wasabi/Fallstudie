@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="CompletedPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="FailedPage.xaml.cs">
+    <Compile Update="PendingPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -37,5 +37,8 @@ namespace AOT.Models
 
         [BsonElement("pflicht")]
         public string Pflicht { get; set; }
+
+        [BsonElement("status")]
+        public string Status { get; set; }
     }
 }
