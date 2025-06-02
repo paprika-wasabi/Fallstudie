@@ -88,11 +88,6 @@
                 <RadioButton Content="4" GroupName="Risiko / Komplexität" Margin="5" Checked="KPI05_Checked"/>
                 <RadioButton Content="5" GroupName="Risiko / Komplexität" Margin="5" Checked="KPI05_Checked"/>
             </StackPanel>
-            <TextBlock Text="Rechtliche/Regulatorische Pflicht"></TextBlock>
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <RadioButton x:Name="Ja" Content="erforderlich" GroupName="Rechtliche/Regulatorische Pflicht" Margin="5" Checked="KPI06_Checked"/>
-                <RadioButton x:Name="Nein" Content="nicht erforderlich" GroupName="Rechtliche/Regulatorische Pflicht" Margin="5" Checked="KPI06_Checked"/>
-            </StackPanel>
         </StackPanel>
 
         <Button Margin = "250,0,0,0" Content="Erstellen" Width="100" Height="25" HorizontalAlignment="Left" Click="SubmitForm_Click" Grid.Row="1" Grid.ColumnSpan="2"/>
