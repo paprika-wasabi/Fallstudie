@@ -20,7 +20,6 @@ namespace AOT
         private int KPI03;
         private int KPI04;
         private int KPI05;
-        private bool KPI06;
 
         public FillFormWindow()
         {
@@ -166,18 +165,6 @@ namespace AOT
         private void KPI05_Checked(object sender, RoutedEventArgs e)
         {
             KPI05 = ConvertToInteger(sender as RadioButton);
-        }
-
-        private void KPI06_Checked(object sender, RoutedEventArgs e)
-        {
-            if (Ja.IsChecked == true)
-            {
-                KPI06 = true;
-            }
-            else
-            {
-                KPI06 = false;
-            }
         }
     }
 }
