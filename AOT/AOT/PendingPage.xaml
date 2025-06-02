@@ -9,9 +9,9 @@
     <Grid Background="White">
         <StackPanel Orientation="Vertical">
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                <TextBlock Margin="40,0,0,0">User:</TextBlock>
+                <TextBlock Margin="40,0,0,0">Benutzer:</TextBlock>
                 <TextBlock x:Name="UserBlock" Margin="10,0,0,0"></TextBlock>
-                <TextBlock Margin="10,0,0,0">Role:</TextBlock>
+                <TextBlock Margin="10,0,0,0">Rolle:</TextBlock>
                 <TextBlock x:Name="RoleBlock" Margin="10,0,0,0"></TextBlock>
             </StackPanel>
             <ListView Margin="0,40,0,0" Name="CollectionView" Width="780" Height="400" ItemsSource="{Binding PendingProjectsCollection}">
