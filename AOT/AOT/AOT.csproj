@@ -14,10 +14,4 @@
     <PackageReference Include="MongoDB.Driver" Version="3.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="PendingPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
 </Project>

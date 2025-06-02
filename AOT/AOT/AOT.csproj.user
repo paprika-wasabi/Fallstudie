@@ -27,9 +27,6 @@
     <Page Update="FillFormWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="PendingPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AOT"
         mc:Ignorable="d"
-        Title="AOT" Height="620" Width="980">
+        Title="AOT" Height="750" Width="1200">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>
@@ -16,7 +16,6 @@
         <StackPanel Background="#333" VerticalAlignment="Stretch">
             <Button Content="Dashboard" Click="DashboardButton_Click" Margin="10"/>
             <Button Content="Projekte" Click="HomeButton_Click" Margin="10"/>
-            <Button Content="Ausstehende" Click="PendingButton_Click" Margin="10"/>
             <!-- Add more buttons here -->
         </StackPanel>
         <ContentControl x:Name="MainContent" Grid.Column="1" />

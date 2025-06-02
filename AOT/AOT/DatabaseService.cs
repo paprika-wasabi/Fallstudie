@@ -152,9 +152,9 @@ namespace AOT
 
 
 
-        public List<Project> GetAllActiveProjects()
+        public List<Project> GetAllProjects()
         {
-            return _projects.Find(p => p.Status == "Aktiv").SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
+            return _projects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
         public List<Project> GetAllPendingProjects()

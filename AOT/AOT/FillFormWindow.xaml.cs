@@ -48,13 +48,13 @@ namespace AOT
         private void SubmitForm_Click(object sender, RoutedEventArgs e)
         {
             var pflicht = "";
-            var status = "Aktiv";
+            var status = "Neu";
             int pflichtKPIPoint = 0;
 
             if (IsPflicht.IsChecked == true)
             {
                 pflicht = "Ja";
-                status = "Ausstehend";
+                status = "Neu";
                 pflichtKPIPoint = 20;
 
 

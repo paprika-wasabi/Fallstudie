@@ -24,7 +24,7 @@ namespace AOT
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             bool isChecked = IsPflicht.IsChecked == true;
-            WeakReferenceMessenger.Default.Send(new Message(Message.MessageType.Search, BudgetMin.Text, BudgetMax.Text, ProjectName.Text, isChecked, ProjectLeaderComboBox.Text, DepartmentComboBox.Text, ProjectTypeComboBox.Text) );
+            WeakReferenceMessenger.Default.Send(new Message(Message.MessageType.Search, BudgetMin.Text, BudgetMax.Text, ProjectName.Text, isChecked, ProjectLeaderComboBox.Text, DepartmentComboBox.Text, ProjectTypeComboBox.Text));
         }
 
         private void LeaderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -80,6 +80,38 @@ namespace AOT
             }
         }
 
+        private void Approve_Click(object sender, RoutedEventArgs e)
+        {
+            // Set the project status to "Genehmigt"
+            var item = CollectionView.SelectedItem as Project;
+            if (item != null)
+            {
+                DatabaseService db = new();
+                db.UpdateProjectStatus(item, "Genehmigt");
+            }
+            
+            WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
+        }
+
+        private void Deny_Click(object sender, RoutedEventArgs e)
+        {
+            // Set the project status to "Abgelehnt"
+            var item = CollectionView.SelectedItem as Project;
+            if (item != null)
+            {
+                DatabaseService db = new();
+                db.UpdateProjectStatus(item, "Abgelehnt");
+            }
+            WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
+
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            // Delete the document
+
+        }
+
         private void Done_Click(object sender, RoutedEventArgs e)
         {
             var item = CollectionView.SelectedItem as Project;
@@ -114,5 +146,11 @@ namespace AOT
             // Try parse decimal, allow also empty string (for deleting)
             return decimal.TryParse(fullText, out _) || string.IsNullOrEmpty(fullText);
         }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
+
 }
