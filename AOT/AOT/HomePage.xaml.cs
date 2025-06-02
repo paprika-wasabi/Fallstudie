@@ -76,8 +76,33 @@ namespace AOT
             var item = CollectionView.SelectedItem as Project;
             if (item != null)
             {
-                MessageBox.Show($"Viewing: {item.Name}\n{item.Beschreibung}");
+                string[] kpiNames = new[]
+                {
+                    "Strategischer Beitrag",
+                    "Wirtschaftlicher Nutzen",
+                    "Dringlichkeit",
+                    "Ressourceneffizienz",
+                    "Risiko/Komplexität"
+                };
+
+                // KPIs mit Namen und Wert paaren, nur falls Liste vorhanden
+                string kpiString = item.KPIList != null
+                    ? string.Join("\n",
+                        kpiNames
+                            .Select((name, idx) =>
+                                idx < item.KPIList.Count
+                                    ? $"{name}: {item.KPIList[idx]}"
+                                    : $"{name}: -"))
+                    : string.Join("\n", kpiNames.Select(name => $"{name}: -"));
+
+                MessageBox.Show(
+                    $"Name: {item.Name}\n" +
+                    $"Beschreibung: {item.Beschreibung}\n\n" +
+                    $"KPIs:\n{kpiString}"
+                );
             }
+
+            
         }
 
         private void Approve_Click(object sender, RoutedEventArgs e)
