@@ -61,7 +61,18 @@ namespace AOT
 
         }
 
-        
+        private void IsPflicht_Checked(object sender, RoutedEventArgs e)
+        {
+            // Set focusable to true for the BegründungPflichtBox when the checkbox is checked
+            BegründungPflichtBox.Focusable = true;
+
+        }
+
+        private void IsPflicht_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Set focusable to false for the BegründungpflichtBox when the checkbox is unchecked
+            BegründungPflichtBox.Focusable = false;
+        }
 
         private void SubmitForm_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +95,13 @@ namespace AOT
                 b = budget;
             }
 
-            if(UnterschriftCheckBox.IsChecked == false)
+            if(pflicht == "Ja" && string.IsNullOrEmpty(BegründungPflichtBox.Text))
+{
+                MessageBox.Show("Bitte geben Sie eine Begründung für die Pflichtangabe ein.", "Fehlende Begründung", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (UnterschriftCheckBox.IsChecked == false)
             {
                 MessageBox.Show("Bitte bestätigen Sie die Unterschrift.", "Fehlende Unterschrift", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

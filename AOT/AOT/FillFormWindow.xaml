@@ -33,7 +33,10 @@
                     <ComboBox x:Name="PortfolioComboBox" Margin="30,0,0,0" Width="180" Height="22"></ComboBox>
                 </StackPanel>
 
-                <CheckBox Margin="0,5,0,15" x:Name="IsPflicht" Content="Pflichtprojekt"/>
+                <CheckBox Margin="0,5,0,5" x:Name="IsPflicht" Content="Pflichtprojekt" Checked="IsPflicht_Checked" Unchecked="IsPflicht_Unchecked"/>
+                
+                <TextBlock Text="Begründung:"/>
+                <TextBox x:Name="BegründungPflichtBox" Margin="0,5,0,30"  TextWrapping="Wrap" VerticalAlignment="Stretch" MinHeight="20" MaxHeight="300" Focusable="False"/>
 
 
                 <TextBlock Text="Ausgangslage:"/>
