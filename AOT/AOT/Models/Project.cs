@@ -14,6 +14,9 @@ namespace AOT.Models
         [BsonElement("name")]
         public string Name { get; set; }
 
+        [BsonElement("description")]
+        public string Beschreibung { get; set; }
+
         [BsonElement("projectleader")]
         public string Leader { get; set; }
 

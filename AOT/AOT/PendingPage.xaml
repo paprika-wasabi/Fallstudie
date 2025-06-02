@@ -22,7 +22,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Datail Anzeigen" Click="View_Click"/>
+                        <MenuItem Header="Detail Anzeigen" Click="View_Click"/>
                         <MenuItem Header="Genehmigen" Click="ApproveClick"/>
                         <MenuItem Header="Ablehnen" Click="DeleteFromPending"/>
                     </ContextMenu>

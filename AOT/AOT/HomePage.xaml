@@ -47,7 +47,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Datail Anzeigen" Click="View_Click"/>
+                        <MenuItem Header="Detail Anzeigen" Click="View_Click"/>
                         <MenuItem Header="Abschließen" Click="Done_Click"/>
                         <MenuItem Header="Scheitern" Click="Fail_Click"/>
                     </ContextMenu>

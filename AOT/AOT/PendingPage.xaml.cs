@@ -32,7 +32,7 @@ namespace AOT
             var item = CollectionView.SelectedItem as Project;
             if (item != null)
             {
-                MessageBox.Show($"Viewing: {item.Name}");
+                MessageBox.Show($"Viewing: {item.Name}\n{item.Beschreibung}");
             }
         }
 

@@ -75,6 +75,7 @@ namespace AOT
             {
                 Budget = budget,
                 Name = NameBox.Text,
+                Beschreibung = BeschreibungBox.Text,
                 Leader = ProjectLeaderComboBox.Text,
                 Department = DepartmentName.Text,
                 Type = ProjectTypeComboBox.Text,
