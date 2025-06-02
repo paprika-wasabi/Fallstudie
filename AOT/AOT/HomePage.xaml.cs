@@ -181,6 +181,16 @@ namespace AOT
 
         }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            // Aktuellen Prozesspfad holen
+            var exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            // Neue Instanz starten
+            System.Diagnostics.Process.Start(exePath);
+            // Aktuelle Instanz beenden
+            Application.Current.Shutdown();
+        }
+
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextDecimal(((TextBox)sender).Text, e.Text);

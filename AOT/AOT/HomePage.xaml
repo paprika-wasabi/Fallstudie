@@ -11,12 +11,13 @@
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                 <TextBlock Margin="40,0,0,0">Benutzer:</TextBlock>
                 <TextBlock x:Name="UserBlock" Margin="10,0,0,0"></TextBlock>
-                <TextBlock Margin="10,0,0,0">Rolle:</TextBlock>
+                <TextBlock Margin="10,0,0,0" Width="28">Rolle:</TextBlock>
                 <TextBlock x:Name="RoleBlock" Margin="10,0,0,0"></TextBlock>
-                <Button Margin="400,0,0,0" Width="80" Click="OpenForm_Click">Neu Projekt</Button>
+                <Button Margin="590,0,10,0" Width="63" Click="Logout_Click">Ausloggen</Button>
+                <Button Margin="0,0,0,0" Width="80" Click="OpenForm_Click">Neues Projekt</Button>
             </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="250" Height="20">
-                <TextBlock>Budget</TextBlock>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="350" Height="20">
+                <TextBlock Width="42">Budget</TextBlock>
                 <TextBlock Margin="5,0,0,0">Min:</TextBlock>
                 <TextBox x:Name="BudgetMin" Margin="10,0,0,0" Width="60" BorderBrush="Black" BorderThickness="1" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
                 <TextBlock Margin="10,0,0,0">Max:</TextBlock>
