@@ -25,9 +25,24 @@ namespace AOT
         public LoginWindow()
         {
             InitializeComponent();
+            // KeyDown-Event für das gesamte Fenster abonnieren
+            this.KeyDown += LoginWindow_KeyDown;
         }
 
         private async void Login_Click(object sender, RoutedEventArgs e)
+        {
+            await TryLogin();
+        }
+
+        private async void LoginWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                await TryLogin();
+            }
+        }
+
+        private async Task TryLogin()
         {
             DatabaseService db = new DatabaseService();
             string username = UsernameBox.Text;
@@ -35,17 +50,22 @@ namespace AOT
 
             User user = await db.GetUserByUserName(username);
 
-            AuthState.UserName = user.username;
-            AuthState.Role = user.role;
+            if (user == null)
+            {
+                MessageBox.Show("Benutzername nicht gefunden.", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             if (password == user.password) // Replace with real logic
             {
+                AuthState.UserName = user.username;
+                AuthState.Role = user.role;
                 IsAuthenticated = true;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Invalid login");
+                MessageBox.Show("Falsches Passwort.", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
