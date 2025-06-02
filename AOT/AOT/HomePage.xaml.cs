@@ -37,6 +37,7 @@ namespace AOT
             }
         }
 
+        public bool userAuthorized;
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var service = new DatabaseService();
@@ -56,6 +57,15 @@ namespace AOT
 
             UserBlock.Text = AuthState.UserName;
             RoleBlock.Text = AuthState.Role;
+
+            if (AuthState.Role == "Manager"){
+                userAuthorized = true;
+            }
+      
+            else
+            {
+                userAuthorized = false;
+            }
         }
 
         private void OpenForm_Click(object sender, RoutedEventArgs e)
@@ -107,19 +117,33 @@ namespace AOT
 
         private void Approve_Click(object sender, RoutedEventArgs e)
         {
-            // Set the project status to "Genehmigt"
+            if (!userAuthorized)
+            {
+                // Option ist deaktiviert, zeige Fehlermeldung an
+                MessageBox.Show("Sie sind nicht berechtigt, diese Aktion auszuführen.", "Zugriff verweigert", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Setze den Projektstatus auf "Genehmigt"
             var item = CollectionView.SelectedItem as Project;
             if (item != null)
             {
                 DatabaseService db = new();
                 db.UpdateProjectStatus(item, "Genehmigt");
             }
-            
+
             WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
         }
 
         private void Deny_Click(object sender, RoutedEventArgs e)
         {
+            if (!userAuthorized)
+            {
+                // Option ist deaktiviert, zeige Fehlermeldung an
+                MessageBox.Show("Sie sind nicht berechtigt, diese Aktion auszuführen.", "Zugriff verweigert", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             // Set the project status to "Abgelehnt"
             var item = CollectionView.SelectedItem as Project;
             if (item != null)
@@ -133,6 +157,13 @@ namespace AOT
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (!userAuthorized)
+            {
+                // Option ist deaktiviert, zeige Fehlermeldung an
+                MessageBox.Show("Sie sind nicht berechtigt, diese Aktion auszuführen.", "Zugriff verweigert", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             // Delete the document
             var item = CollectionView.SelectedItem as Project;
             if (item != null)

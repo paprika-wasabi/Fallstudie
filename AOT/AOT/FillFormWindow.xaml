@@ -17,11 +17,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Margin="10,10,10,0" Grid.Column="0">
-            <TextBlock Text="Budget:"/>
-            <TextBox x:Name="BudgetBox" Margin="0,5,0,15" PreviewTextInput="TextBox_PreviewTextInput" LostFocus="TextBox_LostFocus"/>
-
             <TextBlock Text="Name:"/>
             <TextBox x:Name="NameBox" Margin="0,5,0,15"/>
+
+            <TextBlock Text="Budget:"/>
+            <TextBox x:Name="BudgetBox" Margin="0,5,0,15" PreviewTextInput="TextBox_PreviewTextInput" LostFocus="TextBox_LostFocus"/>
 
             <TextBlock Text="Beschreibung:"/>
             <TextBox x:Name="BeschreibungBox" Margin="0,5,0,15" Height="71" TextWrapping="Wrap"/>
