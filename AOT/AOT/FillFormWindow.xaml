@@ -55,7 +55,7 @@
                 <TextBlock Text="Personenaufwand Beschreibung:"/>
                 <TextBox x:Name="PersonenaufwandBeschreibungBox" Margin="0,5,0,5" TextWrapping="Wrap" VerticalAlignment="Stretch" MinHeight="20" MaxHeight="300"/>
                 <TextBlock Text="Personenaufwand in Euro:"/>
-                <TextBox x:Name="BudgetPersonalaufwandBox" Margin="0,5,0,15" PreviewTextInput="TextBox_PreviewTextInput" LostFocus="BudgetBox_LostFocus"/>
+                <TextBox x:Name="BudgetPersonenaufwandBox" Margin="0,5,0,15" PreviewTextInput="TextBox_PreviewTextInput" LostFocus="BudgetBox_LostFocus"/>
                 <TextBlock Text="Sachmittel Beschreibung:"/>
                 <TextBox x:Name="SachmittelBeschreibungBox" Margin="0,5,0,5" TextWrapping="Wrap" VerticalAlignment="Stretch" MinHeight="20" MaxHeight="300"/>
                 <TextBlock Text="Sachmittel in Euro:"/>
@@ -65,10 +65,7 @@
 
                 <TextBlock Margin="0,20,0,0" Text="Projektorganisation" FontSize="15"/>
                 <TextBlock Text="Auftraggeber:"/>
-                <TextBox x:Name="Auftraggeberbox" Margin="0,5,0,15"/>
-
-                <TextBlock Text="Beschreibung:"/>
-                <TextBox x:Name="BeschreibungBox" Margin="0,5,0,15" TextWrapping="Wrap" VerticalAlignment="Stretch" MinHeight="20" MaxHeight="300"/>
+                <TextBox x:Name="AuftraggeberBox" Margin="0,5,0,15"/>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock>Projektleiter:</TextBlock>

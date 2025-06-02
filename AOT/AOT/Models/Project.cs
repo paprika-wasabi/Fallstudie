@@ -8,14 +8,53 @@ namespace AOT.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
-        [BsonElement("budget")]
-        public decimal Budget { get; set; }
-
         [BsonElement("name")]
         public string Name { get; set; }
 
-        [BsonElement("description")]
-        public string Beschreibung { get; set; }
+        [BsonElement("projektnummer")]
+        public string Projektnummer { get; set; }
+
+        [BsonElement("projecttype")]
+        public string Type { get; set; }
+
+        [BsonElement("portfolioName")]
+        public string PortfolioName { get; set; }
+
+        [BsonElement("pflicht")]
+        public string Pflicht { get; set; }
+
+        [BsonElement("ausgangslage")]
+        public string Ausgangslage { get; set; }
+
+        [BsonElement("projektziele")]
+        public string Projektziele { get; set; }
+
+        [BsonElement("abgrenzungen")]
+        public string Abgrenzungen { get; set; }
+
+        [BsonElement("meilensteine")]
+        public string Meilensteine { get; set; }
+
+        [BsonElement("termine")]
+        public string Termine { get; set; }
+
+        [BsonElement("personenaufwand_beschreibung")]
+        public string Personenaufwand_Beschreibung { get; set; }
+
+        [BsonElement("personenaufwand")]
+        public string Personenaufwand { get; set; }
+
+        [BsonElement("sachmittel_beschreibung")]
+        public string Sachmittel_Beschreibung { get; set; }
+
+        [BsonElement("sachmittel")]
+        public string Sachmittel { get; set; }
+
+        [BsonElement("budget")]
+        public decimal Budget { get; set; }
+
+        [BsonElement("auftraggeber")]
+        public string Auftraggeber { get; set; }
 
         [BsonElement("projectleader")]
         public string Leader { get; set; }
@@ -23,14 +62,14 @@ namespace AOT.Models
         [BsonElement("department")]
         public string Department { get; set; }
 
-        [BsonElement("portfolioName")]
-        public string PortfolioName { get; set; }
-
-        [BsonElement("projecttype")]
-        public string Type { get; set; }
-
         [BsonElement("member")]
         public string Member { get; set; }
+
+        [BsonElement("stakeholder")]
+        public string Stakeholder { get; set; }
+
+        [BsonElement("verteiler")]
+        public string Verteiler { get; set; }
 
         [BsonElement("kpi-score")]
         public float KPI { get; set; }
@@ -40,9 +79,6 @@ namespace AOT.Models
 
         [BsonElement("date")]
         public string Date { get; set; }
-
-        [BsonElement("pflicht")]
-        public string Pflicht { get; set; }
 
         [BsonElement("status")]
         public string Status { get; set; }

@@ -107,7 +107,6 @@ namespace AOT
 
                 MessageBox.Show(
                     $"Name: {item.Name}\n" +
-                    $"Beschreibung: {item.Beschreibung}\n\n" +
                     $"KPIs:\n{kpiString}"
                 );
             }

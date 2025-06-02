@@ -47,9 +47,9 @@ namespace AOT
         private void BudgetBox_LostFocus(object sender, RoutedEventArgs e)
         {
             // If the BudgetPersonalaufwandBox is not empty and the BudgetSachmittelBox is not empty, calculate the total budget
-            if (!string.IsNullOrEmpty(BudgetPersonalaufwandBox.Text) && !string.IsNullOrEmpty(BudgetSachmittelBox.Text))
+            if (!string.IsNullOrEmpty(BudgetPersonenaufwandBox.Text) && !string.IsNullOrEmpty(BudgetSachmittelBox.Text))
             {
-                if (decimal.TryParse(BudgetPersonalaufwandBox.Text, out decimal personalaufwand) && decimal.TryParse(BudgetSachmittelBox.Text, out decimal sachmittel))
+                if (decimal.TryParse(BudgetPersonenaufwandBox.Text, out decimal personalaufwand) && decimal.TryParse(BudgetSachmittelBox.Text, out decimal sachmittel))
                 {
                     BudgetBox.Text = (personalaufwand + sachmittel).ToString();
                 }
@@ -86,17 +86,36 @@ namespace AOT
 
             Project project = new Project()
             {
-                Budget = budget,
                 Name = NameBox.Text,
-                Leader = ProjectLeaderComboBox.Text,
-                Department = DepartmentName.Text,
+                Projektnummer = NumberBox.Text,
                 Type = ProjectTypeComboBox.Text,
                 PortfolioName = PortfolioComboBox.Text,
+                Pflicht = pflicht,
+                Ausgangslage = AusgangslageBox.Text,
+                Projektziele = ZieleBox.Text,
+                Abgrenzungen = AbgrenzungenBox.Text,
+                Meilensteine = MeilensteineBox.Text,
+                Termine = TermineBox.Text,
+
+                Personenaufwand_Beschreibung = PersonenaufwandBeschreibungBox.Text,
+                Personenaufwand = BudgetPersonenaufwandBox.Text,
+                Sachmittel_Beschreibung= SachmittelBeschreibungBox.Text,
+                Sachmittel = BudgetSachmittelBox.Text,
+                Budget = budget,
+
+                Auftraggeber = AuftraggeberBox.Text,
+
+                Leader = ProjectLeaderComboBox.Text,
+                Department = DepartmentName.Text,
+
                 Member = MemberBox.Text,
+                Stakeholder = StakeholderBox.Text,
+                Verteiler = VerteilerBox.Text,
+
                 KPI = CalulateKPIScore() + pflichtKPIPoint,
                 KPIList = new List<int> {Strategischer_Beitrag, Wirtschaftlicher_Nutzen, Dringlichkeit, Ressourceneffizienz, Risiko_Komplexitaet },
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
-                Pflicht = pflicht,
+                
                 Status = status,
             };
 
