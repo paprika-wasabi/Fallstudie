@@ -84,6 +84,19 @@ namespace AOT
                 b = budget;
             }
 
+            if(UnterschriftCheckBox.IsChecked == false)
+            {
+                MessageBox.Show("Bitte bestätigen Sie die Unterschrift.", "Fehlende Unterschrift", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if(Strategischer_Beitrag == 0 || Wirtschaftlicher_Nutzen == 0 || Dringlichkeit == 0 || Ressourceneffizienz == 0 || Risiko_Komplexitaet == 0)
+            {
+                MessageBox.Show("Bitte bewerten Sie alle KPIs.", "Fehlende Bewertung", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }   
+
+
             Project project = new Project()
             {
                 Name = NameBox.Text,
