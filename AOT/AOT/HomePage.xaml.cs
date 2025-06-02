@@ -109,29 +109,20 @@ namespace AOT
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             // Delete the document
-
-        }
-
-        private void Done_Click(object sender, RoutedEventArgs e)
-        {
             var item = CollectionView.SelectedItem as Project;
             if (item != null)
             {
                 DatabaseService db = new();
-                //db.MoveToDone(item);
+                if (db.DeleteProject(item))
+                {
+                    WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while deleting the project.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
-        }
 
-        private void Fail_Click(object sender, RoutedEventArgs e)
-        {
-            var item = CollectionView.SelectedItem as Project;
-            if (item != null)
-            {
-                DatabaseService db = new();
-                //db.MoveToFail(item);
-            }
-            WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)

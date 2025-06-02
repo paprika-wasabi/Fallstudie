@@ -15,11 +15,11 @@ namespace AOT
     /// </summary>
     public partial class FillFormWindow : Window
     {
-        private int KPI01;
-        private int KPI02;
-        private int KPI03;
-        private int KPI04;
-        private int KPI05;
+        private int Strategischer_Beitrag;
+        private int Wirtschaftlicher_Nutzen;
+        private int Dringlichkeit;
+        private int Ressourceneffizienz;
+        private int Risiko_Komplexitaet;
 
         public FillFormWindow()
         {
@@ -77,6 +77,7 @@ namespace AOT
                 PortfolioName = PortfolioComboBox.Text,
                 Member = MemberBox.Text,
                 KPI = CalulateKPIScore() + pflichtKPIPoint,
+                KPIList = new List<int> {Strategischer_Beitrag, Wirtschaftlicher_Nutzen, Dringlichkeit, Ressourceneffizienz, Risiko_Komplexitaet },
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
                 Pflicht = pflicht,
                 Status = status,
@@ -123,7 +124,7 @@ namespace AOT
 
         private float CalulateKPIScore()
         {
-            return ((((KPI01 * 30) + (KPI02 * 25) + (KPI03 * 15) + (KPI04 * 10) + (KPI05 * 10)) / 90 ) * 20);
+            return ((((Strategischer_Beitrag * 30) + (Wirtschaftlicher_Nutzen * 25) + (Dringlichkeit * 15) + (Ressourceneffizienz * 10) + (Risiko_Komplexitaet * 10)) / 90 ) * 20);
         }
 
         private int ConvertToInteger(object sender)
@@ -142,27 +143,27 @@ namespace AOT
 
         private void KPI01_Checked(object sender, RoutedEventArgs e)
         {
-            KPI01 = ConvertToInteger(sender as RadioButton);
+            Strategischer_Beitrag = ConvertToInteger(sender as RadioButton);
         }
 
         private void KPI02_Checked(object sender, RoutedEventArgs e)
         {
-            KPI02 = ConvertToInteger(sender as RadioButton);
+            Wirtschaftlicher_Nutzen = ConvertToInteger(sender as RadioButton);
         }
 
         private void KPI03_Checked(object sender, RoutedEventArgs e)
         {
-            KPI03 = ConvertToInteger(sender as RadioButton);
+            Dringlichkeit = ConvertToInteger(sender as RadioButton);
         }
 
         private void KPI04_Checked(object sender, RoutedEventArgs e)
         {
-            KPI04 = ConvertToInteger(sender as RadioButton);
+            Ressourceneffizienz = ConvertToInteger(sender as RadioButton);
         }
 
         private void KPI05_Checked(object sender, RoutedEventArgs e)
         {
-            KPI05 = ConvertToInteger(sender as RadioButton);
+            Risiko_Komplexitaet = ConvertToInteger(sender as RadioButton);
         }
     }
 }

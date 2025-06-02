@@ -35,6 +35,9 @@ namespace AOT.Models
         [BsonElement("kpi-score")]
         public float KPI { get; set; }
 
+        [BsonElement("kpi-list")]
+        public List<int> KPIList { get; set; }
+
         [BsonElement("date")]
         public string Date { get; set; }
 

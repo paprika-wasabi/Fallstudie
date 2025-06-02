@@ -146,6 +146,17 @@ namespace AOT
             return await _users.Find(a => a.username == usernanme).FirstOrDefaultAsync();
         }
 
+        public bool DeleteProject(Project project)
+        {
+            if (project == null)
+                return false;
+
+            var filter = Builders<Project>.Filter.Eq(p => p.Id, project.Id);
+            var result = _projects.DeleteOne(filter);
+
+            return result.DeletedCount > 0;
+        }
+
         public bool AddNewProject(Project newProject)
         {
             try
