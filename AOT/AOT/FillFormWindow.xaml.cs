@@ -42,12 +42,7 @@ namespace AOT
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            var textBox = sender as TextBox;
-            if (!decimal.TryParse(textBox.Text, out _))
-            {
-                MessageBox.Show("Please enter a valid decimal number.");
-                textBox.Focus();
-            }
+            
         }
 
         private void SubmitForm_Click(object sender, RoutedEventArgs e)
