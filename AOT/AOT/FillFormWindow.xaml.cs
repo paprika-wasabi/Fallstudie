@@ -21,6 +21,9 @@ namespace AOT
         private int Ressourceneffizienz;
         private int Risiko_Komplexitaet;
 
+        private int budget;
+
+
         public FillFormWindow()
         {
             InitializeComponent();
@@ -40,10 +43,25 @@ namespace AOT
             return decimal.TryParse(fullText, out _) || string.IsNullOrEmpty(fullText);
         }
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+
+        private void BudgetBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            
+            // If the BudgetPersonalaufwandBox is not empty and the BudgetSachmittelBox is not empty, calculate the total budget
+            if (!string.IsNullOrEmpty(BudgetPersonalaufwandBox.Text) && !string.IsNullOrEmpty(BudgetSachmittelBox.Text))
+            {
+                if (decimal.TryParse(BudgetPersonalaufwandBox.Text, out decimal personalaufwand) && decimal.TryParse(BudgetSachmittelBox.Text, out decimal sachmittel))
+                {
+                    BudgetBox.Text = (personalaufwand + sachmittel).ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Bitte geben Sie gültige Zahlen für Personalaufwand und Sachmittel ein.", "Ungültige Eingabe", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+
         }
+
+        
 
         private void SubmitForm_Click(object sender, RoutedEventArgs e)
         {
@@ -70,7 +88,6 @@ namespace AOT
             {
                 Budget = budget,
                 Name = NameBox.Text,
-                Beschreibung = BeschreibungBox.Text,
                 Leader = ProjectLeaderComboBox.Text,
                 Department = DepartmentName.Text,
                 Type = ProjectTypeComboBox.Text,
