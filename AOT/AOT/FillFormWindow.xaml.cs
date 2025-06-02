@@ -54,11 +54,13 @@ namespace AOT
         {
             var pflicht = "";
             var status = "Aktiv";
+            int pflichtKPIPoint = 0;
 
             if (IsPflicht.IsChecked == true)
             {
                 pflicht = "Ja";
                 status = "Ausstehend";
+                pflichtKPIPoint = 20;
 
 
             }
@@ -78,7 +80,7 @@ namespace AOT
                 Type = ProjectTypeComboBox.Text,
                 PortfolioName = PortfolioComboBox.Text,
                 Member = MemberBox.Text,
-                KPI = CalulateKPIScore(),
+                KPI = CalulateKPIScore() + pflichtKPIPoint,
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
                 Pflicht = pflicht,
                 Status = status,
@@ -125,7 +127,7 @@ namespace AOT
 
         private float CalulateKPIScore()
         {
-            return (((KPI01 * 30) + (KPI02 * 25) + (KPI03 * 15) + (KPI04 * 10) + (KPI05 * 10)) * 20 ) / 90;
+            return ((((KPI01 * 30) + (KPI02 * 25) + (KPI03 * 15) + (KPI04 * 10) + (KPI05 * 10)) / 90 ) * 20);
         }
 
         private int ConvertToInteger(object sender)
