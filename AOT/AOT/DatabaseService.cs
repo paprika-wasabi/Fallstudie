@@ -27,7 +27,7 @@ namespace AOT
             _users = database.GetCollection<User>("User");
         }
 
-        public List<Project> Search(IMongoCollection<Project> collection, string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type)
+        public List<Project> Search(IMongoCollection<Project> collection, string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type, string status)
         {
             decimal budgetMinValue;
             decimal budgetMaxValue;
@@ -74,12 +74,15 @@ namespace AOT
             if (!string.IsNullOrWhiteSpace(type))
                 filter &= filterBuilder.Eq(x => x.Type, type);
 
+            if (!string.IsNullOrWhiteSpace(status) && status != "Alle")
+                filter &= filterBuilder.Eq(x => x.Status, status);
+
             return collection.Find(filter).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
-        public List<Project> SearchActiveProject(string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type)
+        public List<Project> SearchActiveProject(string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type, string status)
         {
-            return Search(_projects, budgetMin, budgetMax, name, isPflicht, leader, department, type);
+            return Search(_projects, budgetMin, budgetMax, name, isPflicht, leader, department, type, status);
         }
 
         public async Task<List<ProjectType>> GetProjectTypesAsync()
@@ -119,27 +122,6 @@ namespace AOT
 
             var result = await _projects.UpdateOneAsync(filter, update);
         }
-
-        public async void MoveToDone(Project project)
-        {
-            var document = await _projects.Find(a => a.Id == project.Id).FirstOrDefaultAsync();
-            if (document == null)
-            {
-                return;
-            }
-            await _projects.DeleteOneAsync(a => a.Id == project.Id);
-        }
-
-        public async void MoveToFail(Project project)
-        {
-            var document = await _projects.Find(a => a.Id == project.Id).FirstOrDefaultAsync();
-            if (document == null)
-            {
-                return;
-            }
-            await _projects.DeleteOneAsync(a => a.Id == project.Id);
-        }
-
 
 
         public List<Project> GetAllProjects()

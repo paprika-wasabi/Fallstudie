@@ -24,7 +24,7 @@ namespace AOT
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             bool isChecked = IsPflicht.IsChecked == true;
-            WeakReferenceMessenger.Default.Send(new Message(Message.MessageType.Search, BudgetMin.Text, BudgetMax.Text, ProjectName.Text, isChecked, ProjectLeaderComboBox.Text, DepartmentComboBox.Text, ProjectTypeComboBox.Text));
+            WeakReferenceMessenger.Default.Send(new Message(Message.MessageType.Search, BudgetMin.Text, BudgetMax.Text, ProjectName.Text, isChecked, ProjectLeaderComboBox.Text, DepartmentComboBox.Text, ProjectTypeComboBox.Text, StatusComboBox.Text));
         }
 
         private void LeaderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
