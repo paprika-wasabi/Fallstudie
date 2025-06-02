@@ -120,16 +120,6 @@ namespace AOT
             var result = await _projects.UpdateOneAsync(filter, update);
         }
 
-        public async void DeleteFromPending(Project project)
-        {
-            var document = await _projects.Find(a => a.Id == project.Id).FirstOrDefaultAsync();
-            if (document == null)
-            {
-                return;
-            }
-            await _projects.DeleteOneAsync(a => a.Id == project.Id);
-        }
-
         public async void MoveToDone(Project project)
         {
             var document = await _projects.Find(a => a.Id == project.Id).FirstOrDefaultAsync();
@@ -157,10 +147,6 @@ namespace AOT
             return _projects.Find(FilterDefinition<Project>.Empty).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
-        public List<Project> GetAllPendingProjects()
-        {
-            return _projects.Find(p => p.Status == "Ausstehend").SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
-        }
 
         public int CountActiveProjects()
         {
