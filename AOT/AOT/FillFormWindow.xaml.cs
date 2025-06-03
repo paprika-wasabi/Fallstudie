@@ -120,7 +120,7 @@ namespace AOT
             {
                 MessageBox.Show("Bitte bewerten Sie alle KPIs.", "Fehlende Bewertung", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-            }   
+            }
 
 
             Project project = new Project()
@@ -139,7 +139,7 @@ namespace AOT
 
                 Personenaufwand_Beschreibung = PersonenaufwandBeschreibungBox.Text,
                 Personenaufwand = BudgetPersonenaufwandBox.Text,
-                Sachmittel_Beschreibung= SachmittelBeschreibungBox.Text,
+                Sachmittel_Beschreibung = SachmittelBeschreibungBox.Text,
                 Sachmittel = BudgetSachmittelBox.Text,
                 Budget = budget,
 
@@ -153,9 +153,11 @@ namespace AOT
                 Verteiler = VerteilerBox.Text,
 
                 KPI = CalulateKPIScore() + pflichtKPIPoint,
-                KPIList = new List<int> {Strategischer_Beitrag, Wirtschaftlicher_Nutzen, Dringlichkeit, Ressourceneffizienz, Risiko_Komplexitaet },
+                KPIList = new List<int> { Strategischer_Beitrag, Wirtschaftlicher_Nutzen, Dringlichkeit, Ressourceneffizienz, Risiko_Komplexitaet },
+
+                Creator = AuthState.UserName,
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
-                
+
                 Status = status,
             };
 

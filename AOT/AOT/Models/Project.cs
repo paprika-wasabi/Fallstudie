@@ -80,6 +80,9 @@ namespace AOT.Models
         [BsonElement("kpi-list")]
         public List<int> KPIList { get; set; }
 
+        [BsonElement("creator")]
+        public string Creator { get; set; }
+
         [BsonElement("date")]
         public string Date { get; set; }
 

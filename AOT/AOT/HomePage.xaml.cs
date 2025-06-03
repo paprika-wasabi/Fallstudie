@@ -136,11 +136,11 @@ namespace AOT
                     $"Abteilung: {item.Department}\n"+
                     $"Stakeholder: {item.Stakeholder}\n"+
                     $"Verteiler: {item.Verteiler}\n\n"+
-                    $"KPIs:\n{kpiString}"
+                    $"KPIs:\n{kpiString}\n\n"+
+                    $"Erstellt von: {item.Creator}\n"+
+                    $"Erstellt am: {item.Date}"
                 );
             }
-
-            
         }
 
         private void Approve_Click(object sender, RoutedEventArgs e)
@@ -152,8 +152,16 @@ namespace AOT
                 return;
             }
 
-            // Setze den Projektstatus auf "Genehmigt"
+            // The logged in user is not authorized his own projects, check if the createor attribute matches the logged in user
             var item = CollectionView.SelectedItem as Project;
+            if (item != null && item.Creator == AuthState.UserName)
+            {
+                MessageBox.Show("Sie sind nicht berechtigt, diesen Projektstatus zu ändern.", "Zugriff verweigert", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+
+            // Setze den Projektstatus auf "Genehmigt"
             if (item != null)
             {
                 DatabaseService db = new();
@@ -234,7 +242,9 @@ namespace AOT
                 Wirtschaftlicher Nutzen;{(project.KPIList != null && project.KPIList.Count > 1 ? project.KPIList[1] : "")}
                 Dringlichkeit;{(project.KPIList != null && project.KPIList.Count > 2 ? project.KPIList[2] : "")}
                 Ressourceneffizienz;{(project.KPIList != null && project.KPIList.Count > 3 ? project.KPIList[3] : "")}
-                Risiko/Komplexität;{(project.KPIList != null && project.KPIList.Count > 4 ? project.KPIList[4] : "")}";
+                Risiko/Komplexität;{(project.KPIList != null && project.KPIList.Count > 4 ? project.KPIList[4] : "")}
+                Erstellt von;{project.Creator}
+                Erstellt am;{project.Date}";
 
                 // Write to file
                 File.WriteAllText(saveFileDialog.FileName, csvContent, Encoding.UTF8);
