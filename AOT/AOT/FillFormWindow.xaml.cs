@@ -2,11 +2,14 @@
 using AOT.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Win32;
+using MongoDB.Driver;
 using System.Configuration;
 using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using 
 
 namespace AOT
 {
@@ -72,6 +75,33 @@ namespace AOT
         {
             // Set focusable to false for the BegründungpflichtBox when the checkbox is unchecked
             BegründungPflichtBox.Focusable = false;
+        }
+
+        private async void UploadPDF_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                Title = "Select a PDF file"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var fileBytes = File.ReadAllBytes(openFileDialog.FileName);
+                var pdfDoc = new PdfFile
+                {
+                    FileName = Path.GetFileName(openFileDialog.FileName),
+                    Data = fileBytes
+                };
+
+                var client = new MongoClient("mongodb://localhost:27017");
+                var database = client.GetDatabase("your_database_name");
+                var collection = database.GetCollection<PdfFile>("pdf_files");
+
+                await collection.InsertOneAsync(pdfDoc);
+
+                MessageBox.Show("PDF uploaded successfully.");
+            }
         }
 
         private void SubmitForm_Click(object sender, RoutedEventArgs e)

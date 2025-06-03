@@ -85,7 +85,8 @@
                 <TextBox x:Name="StakeholderBox" Margin="0,5,0,15" TextWrapping="Wrap" VerticalAlignment="Stretch" MinHeight="20" MaxHeight="300"/>
                 <TextBlock Text="Verteiler:"/>
                 <TextBox x:Name="VerteilerBox" Margin="0,5,0,15" TextWrapping="Wrap" VerticalAlignment="Stretch" MinHeight="20" MaxHeight="300"/>
-
+                <Button Margin="0,15,0,20" Content="PDF Hinzufügen" Click="UploadPDF_Click" Width="121" Height="20"/>
+                
                 <CheckBox Margin="0,5,0,15" x:Name="UnterschriftCheckBox" Content="Unterschrift"/>
 
 
@@ -132,8 +133,9 @@
                     <RadioButton Content="4" GroupName="Risiko / Komplexität" Margin="5" Checked="KPI05_Checked"/>
                     <RadioButton Content="5" GroupName="Risiko / Komplexität" Margin="5" Checked="KPI05_Checked"/>
                 </StackPanel>
+                
             </StackPanel>
-
+            
             <Button Margin = "250,29,0,54" Content="Erstellen" Width="100" HorizontalAlignment="Left" Click="SubmitForm_Click" Grid.Row="1" Grid.ColumnSpan="2"/>
         </Grid>
     </ScrollViewer>
