@@ -191,6 +191,9 @@ namespace AOT
 
         private float CalulateKPIScore()
         {
+
+            // Risiko_Komplexitaet is inverted
+            Risiko_Komplexitaet = 5 + 1 - Risiko_Komplexitaet;
             return ((((Strategischer_Beitrag * 30) + (Wirtschaftlicher_Nutzen * 25) + (Dringlichkeit * 15) + (Ressourceneffizienz * 10) + (Risiko_Komplexitaet * 10)) / 90 ) * 20);
         }
 
