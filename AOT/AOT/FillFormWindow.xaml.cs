@@ -3,8 +3,10 @@ using AOT.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Win32;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Configuration;
+using System.IO;
 using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +26,8 @@ namespace AOT
         private int Risiko_Komplexitaet;
 
         private int budget;
+
+        private ObjectId PdfObjectId { get; set; } = ObjectId.Empty;
 
 
         public FillFormWindow()
@@ -78,9 +82,21 @@ namespace AOT
 
         private async void UploadPDF_Click(object sender, RoutedEventArgs e)
         {
-            // Open a file dialog to select a PDF file
+            DatabaseService db = new DatabaseService();
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                Title = "Select a PDF file"
+            };
 
-            // PDF handling logic
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                byte[] pdfData = File.ReadAllBytes(filePath);
+
+                PdfObjectId = await db.SavePdfToMongo(Path.GetFileName(filePath), pdfData);
+                MessageBox.Show("PDF saved to MongoDB successfully!");
+            }
         }
 
         private void SubmitForm_Click(object sender, RoutedEventArgs e)
@@ -159,6 +175,8 @@ namespace AOT
                 Date = DateTime.Now.ToString("dd-MM-yyyy"),
 
                 Status = status,
+
+                PdfObjectId = PdfObjectId,
             };
 
 

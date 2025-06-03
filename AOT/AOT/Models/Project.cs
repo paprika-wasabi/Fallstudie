@@ -88,5 +88,8 @@ namespace AOT.Models
 
         [BsonElement("status")]
         public string Status { get; set; }
+
+        [BsonElement("pdfObjectId")]
+        public ObjectId PdfObjectId { get; set; }
     }
 }

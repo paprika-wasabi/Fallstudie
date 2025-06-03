@@ -94,52 +94,15 @@ namespace AOT
             var item = CollectionView.SelectedItem as Project;
             if (item != null)
             {
-                string[] kpiNames = new[]
+                PreviewWindow previewWindow = new(item);
+                var parentWindow = Window.GetWindow(this);
+
+                if (parentWindow != null)
                 {
-                    "Strategischer Beitrag",
-                    "Wirtschaftlicher Nutzen",
-                    "Dringlichkeit",
-                    "Ressourceneffizienz",
-                    "Risiko/Komplexität"
-                };
+                    previewWindow.Owner = parentWindow;
+                }
 
-                // KPIs mit Namen und Wert paaren, nur falls Liste vorhanden
-                string kpiString = item.KPIList != null
-                    ? string.Join("\n",
-                        kpiNames
-                            .Select((name, idx) =>
-                                idx < item.KPIList.Count
-                                    ? $"{name}: {item.KPIList[idx]}"
-                                    : $"{name}: -"))
-                    : string.Join("\n", kpiNames.Select(name => $"{name}: -"));
-
-                MessageBox.Show(
-                    $"Projektname: {item.Name}\n" +
-                    $"Projektnummer: {item.Projektnummer}\n"+
-                    $"Projektart: {item.Type}\n"+
-                    $"Portfolio: {item.PortfolioName}\n\n\n"+
-                    $"Pflichtprojekt: {item.Pflicht}\n"+
-                    $"Begründung Pflicht: {item.BegründungPflicht}\n\n"+
-                    $"Ausgangslage: {item.Ausgangslage}\n\n"+
-                    $"Projektziele: {item.Projektziele}\n\n"+
-                    $"Abgrenzungen: {item.Abgrenzungen}\n\n"+
-                    $"Meilensteine: {item.Meilensteine}\n\n"+
-                    $"Termine: {item.Termine}\n\n\n"+
-                    $"Budget:\n"+
-                    $"Personenaufwand Beschreibung: {item.Personenaufwand_Beschreibung}\n"+
-                    $"Personenaufwand: {item.Personenaufwand}€\n\n"+
-                    $"Sachmittel Beschreibung: {item.Sachmittel_Beschreibung}\n" +
-                    $"Sachmittel: {item.Sachmittel}€\n" +
-                    $"Budget gesamt: {item.Budget}€\n\n\n"+
-                    $"Auftraggeber: {item.Auftraggeber}\n"+
-                    $"Projektleiter: {item.Leader}\n"+
-                    $"Abteilung: {item.Department}\n"+
-                    $"Stakeholder: {item.Stakeholder}\n"+
-                    $"Verteiler: {item.Verteiler}\n\n"+
-                    $"KPIs:\n{kpiString}\n\n"+
-                    $"Erstellt von: {item.Creator}\n"+
-                    $"Erstellt am: {item.Date}"
-                );
+                previewWindow.ShowDialog(); // or use Show() if you want it non-modal
             }
         }
 

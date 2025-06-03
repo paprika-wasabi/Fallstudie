@@ -14,6 +14,7 @@ namespace AOT
         private readonly IMongoCollection<ProjectType> _projectsType;
         private readonly IMongoCollection<Portfolio> _portfolios;
         private readonly IMongoCollection<User> _users;
+        private readonly IMongoCollection<PdfFile> _pdfFiles;
 
         public DatabaseService()
         {
@@ -25,6 +26,7 @@ namespace AOT
             _projectsType = database.GetCollection<ProjectType>("Projektart");
             _portfolios = database.GetCollection<Portfolio>("Portfolio");
             _users = database.GetCollection<User>("User");
+            _pdfFiles = database.GetCollection<PdfFile>("PdfFiles");
         }
 
         public List<Project> Search(IMongoCollection<Project> collection, string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type, string portfolio, string status)
@@ -119,6 +121,11 @@ namespace AOT
             return await _projectleaders.Find(a => a.DepartmentId == departmentId).FirstOrDefaultAsync();
         }
 
+        public async Task<PdfFile> GetPdfFileById(ObjectId id)
+        {
+            return await _pdfFiles.Find(a => a.Id == id).FirstOrDefaultAsync();
+        }
+
         public async void UpdateProjectStatus(Project project, string newStatus)
         {
             var filter = Builders<Project>.Filter.Eq(p => p.Id, project.Id);
@@ -173,6 +180,18 @@ namespace AOT
             }
             return true;
 
+        }
+
+        public async Task<ObjectId> SavePdfToMongo(string fileName, byte[] fileData)
+        {
+            var pdf = new PdfFile
+            {
+                FileName = fileName,
+                Data = fileData
+            };
+
+            await _pdfFiles.InsertOneAsync(pdf);
+            return pdf.Id;
         }
     }
 }
