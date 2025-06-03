@@ -121,6 +121,7 @@ namespace AOT
                 Type = ProjectTypeComboBox.Text,
                 PortfolioName = PortfolioComboBox.Text,
                 Pflicht = pflicht,
+                BegründungPflicht = BegründungPflichtBox.Text,
                 Ausgangslage = AusgangslageBox.Text,
                 Projektziele = ZieleBox.Text,
                 Abgrenzungen = AbgrenzungenBox.Text,

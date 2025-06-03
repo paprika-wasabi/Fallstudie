@@ -117,7 +117,7 @@ namespace AOT
                     $"Projektart: {item.Type}\n"+
                     $"Portfolio: {item.PortfolioName}\n\n\n"+
                     $"Pflichtprojekt: {item.Pflicht}\n"+
-                    $"Begründung Pflicht: \n\n"+
+                    $"Begründung Pflicht: {item.BegründungPflicht}\n\n"+
                     $"Ausgangslage: {item.Ausgangslage}\n\n"+
                     $"Projektziele: {item.Projektziele}\n\n"+
                     $"Abgrenzungen: {item.Abgrenzungen}\n\n"+

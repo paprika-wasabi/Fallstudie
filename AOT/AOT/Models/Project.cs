@@ -23,6 +23,9 @@ namespace AOT.Models
         [BsonElement("pflicht")]
         public string Pflicht { get; set; }
 
+        [BsonElement("begründung_pflicht")]
+        public string BegründungPflicht { get; set; }
+
         [BsonElement("ausgangslage")]
         public string Ausgangslage { get; set; }
 
