@@ -9,7 +9,6 @@ using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using 
 
 namespace AOT
 {
@@ -79,29 +78,9 @@ namespace AOT
 
         private async void UploadPDF_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog
-            {
-                Filter = "PDF files (*.pdf)|*.pdf",
-                Title = "Select a PDF file"
-            };
+            // Open a file dialog to select a PDF file
 
-            if (openFileDialog.ShowDialog() == true)
-            {
-                var fileBytes = File.ReadAllBytes(openFileDialog.FileName);
-                var pdfDoc = new PdfFile
-                {
-                    FileName = Path.GetFileName(openFileDialog.FileName),
-                    Data = fileBytes
-                };
-
-                var client = new MongoClient("mongodb://localhost:27017");
-                var database = client.GetDatabase("your_database_name");
-                var collection = database.GetCollection<PdfFile>("pdf_files");
-
-                await collection.InsertOneAsync(pdfDoc);
-
-                MessageBox.Show("PDF uploaded successfully.");
-            }
+            // PDF handling logic
         }
 
         private void SubmitForm_Click(object sender, RoutedEventArgs e)

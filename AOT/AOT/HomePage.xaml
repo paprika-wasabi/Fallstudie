@@ -61,6 +61,7 @@
                         <MenuItem Header="Details Anzeigen" Click="View_Click"/>
                         <MenuItem Header="Genehmigen" Click="Approve_Click"/>
                         <MenuItem Header="Ablehnen" Click="Deny_Click"/>
+                        <MenuItem Header="Exportieren" Click="Export_Click"/>
                         <MenuItem Header="Löschen" Click="Delete_Click"/>
                     </ContextMenu>
                 </ListView.ContextMenu>

@@ -4,6 +4,8 @@ using CommunityToolkit.Mvvm.Messaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.IO;
+using System.Text;
 
 namespace AOT
 {
@@ -179,6 +181,69 @@ namespace AOT
             }
             WeakReferenceMessenger.Default.Send(new Message() { Type = Message.MessageType.RefreshUI });
 
+        }
+
+        private void Export_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the selected project
+            var project = CollectionView.SelectedItem as Project;
+            if (project == null)
+            {
+                MessageBox.Show("Bitte wählen Sie ein Projekt zum Exportieren aus.", "Kein Projekt ausgewählt", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Configure save file dialog
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Title = "Projekt als CSV speichern",
+                Filter = "CSV-Dateien|*.csv",
+                DefaultExt = ".csv",
+                FileName = $"{project.Name.Replace(" ", "_")}.csv"
+            };
+
+            // Show save dialog
+            if (saveFileDialog.ShowDialog() != true)
+                return;
+
+            try
+            {
+                // Create CSV content
+                string csvContent = $@"Projektname;{project.Name}
+                Projektnummer;{project.Projektnummer}
+                Projektart;{project.Type}
+                Portfolio;{project.PortfolioName}
+                Pflichtprojekt;{project.Pflicht}
+                Begründung Pflicht;{project.BegründungPflicht}
+                Ausgangslage;{project.Ausgangslage}
+                Projektziele;{project.Projektziele}
+                Abgrenzungen;{project.Abgrenzungen}
+                Meilensteine;{project.Meilensteine}
+                Termine;{project.Termine}
+                Personenaufwand Beschreibung;{project.Personenaufwand_Beschreibung}
+                Personenaufwand (€);{project.Personenaufwand}
+                Sachmittel Beschreibung;{project.Sachmittel_Beschreibung}
+                Sachmittel (€);{project.Sachmittel}
+                Budget gesamt (€);{project.Budget}
+                Auftraggeber;{project.Auftraggeber}
+                Projektleiter;{project.Leader}
+                Abteilung;{project.Department}
+                Stakeholder;{project.Stakeholder}
+                Verteiler;{project.Verteiler}
+                Strategischer Beitrag;{(project.KPIList != null && project.KPIList.Count > 0 ? project.KPIList[0] : "")}
+                Wirtschaftlicher Nutzen;{(project.KPIList != null && project.KPIList.Count > 1 ? project.KPIList[1] : "")}
+                Dringlichkeit;{(project.KPIList != null && project.KPIList.Count > 2 ? project.KPIList[2] : "")}
+                Ressourceneffizienz;{(project.KPIList != null && project.KPIList.Count > 3 ? project.KPIList[3] : "")}
+                Risiko/Komplexität;{(project.KPIList != null && project.KPIList.Count > 4 ? project.KPIList[4] : "")}";
+
+                // Write to file
+                File.WriteAllText(saveFileDialog.FileName, csvContent, Encoding.UTF8);
+                MessageBox.Show("Projekt erfolgreich exportiert!", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fehler beim Export: {ex.Message}", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
