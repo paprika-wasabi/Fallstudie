@@ -17,6 +17,6 @@
             <TextBlock>Password:</TextBlock>
             <PasswordBox x:Name="PasswordBox" Margin="14,0,0,0" Width="200"/>
         </StackPanel>
-        <Button Margin="0,20,0,0" Content="Login" Click="Login_Click" Width="100"/>
+        <Button Style="{StaticResource RoundedButtonStyle}" Margin="0,20,0,0" Content="Login" Click="Login_Click" Width="100" Height="30"/>
     </StackPanel>
 </Window>
