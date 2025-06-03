@@ -28,7 +28,7 @@
                 <TextBox x:Name="ProjectName" Margin="10,0,0,0" Width="200" BorderBrush="Black" BorderThickness="1"></TextBox>
                 <CheckBox x:Name="IsPflicht" Content="Pflichtprojekt" Margin="10,3,0,0"/>
             </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="700" Height="27">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="880" Height="27">
                 <TextBlock Margin="0,5,0,0" >Projektleiter:</TextBlock>
                 <ComboBox x:Name="ProjectLeaderComboBox" Margin="10,0,0,0" Width="100" Height="22" SelectionChanged="LeaderComboBox_SelectionChanged">
                 </ComboBox>
@@ -37,6 +37,9 @@
                 </ComboBox>
                 <TextBlock Margin="15,5,0,0">Projektart:</TextBlock>
                 <ComboBox x:Name="ProjectTypeComboBox" Margin="10,0,0,0" Width="100" Height="22">
+                </ComboBox>
+                <TextBlock Margin="15,5,0,0">Portfolio:</TextBlock>
+                <ComboBox x:Name="PortfolioComboBox" Margin="10,0,0,0" Width="100" Height="22">
                 </ComboBox>
                 <TextBlock Margin="15,5,0,0">Status:</TextBlock>
                 <ComboBox x:Name="StatusComboBox" Margin="10,0,0,0" Width="100" Height="22">

@@ -27,7 +27,7 @@ namespace AOT
             _users = database.GetCollection<User>("User");
         }
 
-        public List<Project> Search(IMongoCollection<Project> collection, string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type, string status)
+        public List<Project> Search(IMongoCollection<Project> collection, string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type, string portfolio, string status)
         {
             decimal budgetMinValue;
             decimal budgetMaxValue;
@@ -74,15 +74,19 @@ namespace AOT
             if (!string.IsNullOrWhiteSpace(type))
                 filter &= filterBuilder.Eq(x => x.Type, type);
 
+            // HIER: Portfolio-Filter ergänzen
+            if (!string.IsNullOrWhiteSpace(portfolio) && portfolio != "Alle")
+                filter &= filterBuilder.Eq(x => x.PortfolioName, portfolio);
+
             if (!string.IsNullOrWhiteSpace(status) && status != "Alle")
                 filter &= filterBuilder.Eq(x => x.Status, status);
 
             return collection.Find(filter).SortByDescending(p => p.Pflicht).ThenByDescending(k => k.KPI).ToList();
         }
 
-        public List<Project> SearchActiveProject(string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type, string status)
+        public List<Project> SearchActiveProject(string budgetMin, string budgetMax, string name, bool isPflicht, string leader, string department, string type, string portfolio, string status)
         {
-            return Search(_projects, budgetMin, budgetMax, name, isPflicht, leader, department, type, status);
+            return Search(_projects, budgetMin, budgetMax, name, isPflicht, leader, department, type, portfolio, status);
         }
 
         public async Task<List<ProjectType>> GetProjectTypesAsync()

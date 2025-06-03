@@ -16,6 +16,7 @@ namespace AOT.View
         public string Leader;
         public string Department;
         public string ProjectType;
+        public string Portfolio;
         public string ProjectStatus;
         public enum MessageType
         {
@@ -28,7 +29,7 @@ namespace AOT.View
 
         }
 
-        public Message(MessageType type, string minBudget, string maxBudget, string name, bool isPflicht, string leader, string department, string projectType, string projectStatus)
+        public Message(MessageType type, string minBudget, string maxBudget, string name, bool isPflicht, string leader, string department, string projectType, string portfolio, string projectStatus)
         {
             MinBudget = minBudget;
             MaxBudget = maxBudget;
@@ -38,6 +39,7 @@ namespace AOT.View
             Leader = leader;
             Department = department;
             ProjectType = projectType;
+            Portfolio = portfolio;
             ProjectStatus = projectStatus;
 
         }

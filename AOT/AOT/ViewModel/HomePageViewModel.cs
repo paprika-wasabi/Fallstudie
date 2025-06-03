@@ -23,7 +23,7 @@ namespace AOT
                         Refresh();
                         break;
                     case Message.MessageType.Search:
-                        Search(m.MinBudget, m.MaxBudget, m.Name, m.IsPflicht, m.Leader, m.Department, m.ProjectType, m.ProjectStatus);
+                        Search(m.MinBudget, m.MaxBudget, m.Name, m.IsPflicht, m.Leader, m.Department, m.ProjectType, m.Portfolio, m.ProjectStatus);
                         break;
                 }
             });
@@ -43,7 +43,7 @@ namespace AOT
             ProjectsCollection = new ObservableCollection<Project>(projects);
         }
 
-        public async void Search(string minBudget, string maxBudget, string name, bool isPflicht, string leader, string department, string type, string status)
+        public async void Search(string minBudget, string maxBudget, string name, bool isPflicht, string leader, string department, string type, string portfolio, string status)
         {
             if (ProjectsCollection != null)
             {
@@ -52,7 +52,7 @@ namespace AOT
             }
             await Task.Delay(200);
             DatabaseService databaseService = new DatabaseService();
-            List<Project> projects = databaseService.SearchActiveProject(minBudget, maxBudget, name, isPflicht, leader, department, type, status);
+            List<Project> projects = databaseService.SearchActiveProject(minBudget, maxBudget, name, isPflicht, leader, department, type, portfolio, status);
             ProjectsCollection = new ObservableCollection<Project>(projects);
         }
 
