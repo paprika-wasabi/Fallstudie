@@ -74,6 +74,7 @@ namespace AOT
         {
             // Set focusable to false for the BegründungpflichtBox when the checkbox is unchecked
             BegründungPflichtBox.Focusable = false;
+            BegründungPflichtBox.Text = string.Empty; // Clear the text when unchecked
         }
 
         private async void UploadPDF_Click(object sender, RoutedEventArgs e)
