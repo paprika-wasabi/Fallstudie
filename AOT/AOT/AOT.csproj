@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\aotlogo.jpg" />
+    <None Remove="Assets\aotgrey.jpg" />
     <None Remove="Assets\favicon.ico" />
   </ItemGroup>
 
@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\aotlogo.jpg" />
+    <Resource Include="Assets\aotgrey.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\favicon.ico" />
   </ItemGroup>
 

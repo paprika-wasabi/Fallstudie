@@ -15,7 +15,7 @@
 
         <!-- Sidebar -->
         <StackPanel Background="#333" VerticalAlignment="Stretch">
-            <Image Source="Assets/aotlogo.jpg"
+            <Image Source="Assets/aotgrey.jpg"
            Height="80"
            Margin="10"
            DockPanel.Dock="Top"
